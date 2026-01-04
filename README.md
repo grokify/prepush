@@ -172,15 +172,15 @@ All pre-push checks passed!
 
 MIT License - see [LICENSE](LICENSE) for details.
 
- [build-status-svg]: https://github.com/agentplexus/prepush/actions/workflows/ci.yaml/badge.svg?branch=main
- [build-status-url]: https://github.com/agentplexus/prepush/actions/workflows/ci.yaml
- [lint-status-svg]: https://github.com/agentplexus/prepush/actions/workflows/lint.yaml/badge.svg?branch=main
- [lint-status-url]: https://github.com/agentplexus/prepush/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/agentplexus/prepush
- [goreport-url]: https://goreportcard.com/report/github.com/agentplexus/prepush
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/agentplexus/prepush
- [docs-godoc-url]: https://pkg.go.dev/github.com/agentplexus/prepush
+ [build-status-svg]: https://github.com/grokify/prepush/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/grokify/prepush/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/grokify/prepush/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/grokify/prepush/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/prepush
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/prepush
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/prepush
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/prepush
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/agentplexus/prepush/blob/master/LICENSE
- [used-by-svg]: https://sourcegraph.com/github.com/agentplexus/prepush/-/badge.svg
- [used-by-url]: https://sourcegraph.com/github.com/agentplexus/prepush?badge
+ [license-url]: https://github.com/grokify/prepush/blob/master/LICENSE
+ [used-by-svg]: https://sourcegraph.com/github.com/grokify/prepush/-/badge.svg
+ [used-by-url]: https://sourcegraph.com/github.com/grokify/prepush?badge
