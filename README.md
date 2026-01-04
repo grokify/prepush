@@ -1,7 +1,10 @@
-# prepush
+# Prepush
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/grokify/prepush)](https://goreportcard.com/report/github.com/grokify/prepush)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build Status][build-status-svg]][build-status-url]
+[![Lint Status][lint-status-svg]][lint-status-url]
+[![Go Report Card][goreport-svg]][goreport-url]
+[![Docs][docs-godoc-svg]][docs-godoc-url]
+[![License][license-svg]][license-url]
 
 **Multi-language pre-push hook for Git repositories.**
 
@@ -168,3 +171,16 @@ All pre-push checks passed!
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+ [build-status-svg]: https://github.com/agentplexus/prepush/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/agentplexus/prepush/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/agentplexus/prepush/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/agentplexus/prepush/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/agentplexus/prepush
+ [goreport-url]: https://goreportcard.com/report/github.com/agentplexus/prepush
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/agentplexus/prepush
+ [docs-godoc-url]: https://pkg.go.dev/github.com/agentplexus/prepush
+ [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
+ [license-url]: https://github.com/agentplexus/prepush/blob/master/LICENSE
+ [used-by-svg]: https://sourcegraph.com/github.com/agentplexus/prepush/-/badge.svg
+ [used-by-url]: https://sourcegraph.com/github.com/agentplexus/prepush?badge
