@@ -36,9 +36,10 @@ func Detect(dir string) ([]Detection, error) {
 		}
 
 		// Skip hidden directories and common non-source directories
+		// Note: don't skip "." itself (current directory)
 		if d.IsDir() {
 			name := d.Name()
-			if name[0] == '.' || name == "node_modules" || name == "vendor" || name == "__pycache__" {
+			if name != "." && (name[0] == '.' || name == "node_modules" || name == "vendor" || name == "__pycache__") {
 				return filepath.SkipDir
 			}
 			return nil
