@@ -48,29 +48,75 @@ prepush --coverage
 
 ### As Git Hook
 
-Create `.git/hooks/pre-push`:
+To run prepush automatically before every `git push`:
+
+**Option 1: Create hook script**
 
 ```bash
+# Create the hook
+cat > .git/hooks/pre-push << 'EOF'
 #!/bin/bash
 exec prepush
+EOF
+
+# Make it executable
+chmod +x .git/hooks/pre-push
 ```
 
-Or symlink:
+**Option 2: Symlink (simpler)**
 
 ```bash
-ln -s $(which prepush) .git/hooks/pre-push
+ln -sf $(which prepush) .git/hooks/pre-push
+```
+
+**Option 3: Shared hooks (team setup)**
+
+Since `.git/hooks/` isn't tracked by git, teams can use a shared hooks directory:
+
+```bash
+# Create tracked hooks directory
+mkdir -p .githooks
+cat > .githooks/pre-push << 'EOF'
+#!/bin/bash
+exec prepush
+EOF
+chmod +x .githooks/pre-push
+
+# Configure git to use it (each team member runs this once)
+git config core.hooksPath .githooks
+```
+
+**Bypassing the hook**
+
+When needed (e.g., WIP branches), bypass with:
+
+```bash
+git push --no-verify
 ```
 
 ## Supported Languages
 
 | Language | Detection | Checks |
 |----------|-----------|--------|
-| **Go** | `go.mod` | `gofmt`, `golangci-lint`, `go test`, local replace check |
+| **Go** | `go.mod` | `go build`, `go mod tidy`, `gofmt`, `golangci-lint`, `go test`, local replace, untracked refs |
 | **TypeScript** | `package.json` + `tsconfig.json` | `eslint`, `prettier`, `tsc --noEmit`, `npm test` |
 | **JavaScript** | `package.json` | `eslint`, `prettier`, `npm test` |
 | **Python** | `pyproject.toml`, `setup.py`, `requirements.txt` | Coming soon |
 | **Rust** | `Cargo.toml` | Coming soon |
 | **Swift** | `Package.swift` | Coming soon |
+
+### Go Checks Detail
+
+| Check | Type | Description |
+|-------|------|-------------|
+| no local replace | Hard | Fails if go.mod has local replace directives |
+| mod tidy | Hard | Fails if go.mod/go.sum need updating |
+| build | Hard | Fails if project doesn't compile |
+| gofmt | Hard | Fails if code isn't formatted |
+| golangci-lint | Hard | Fails if linter reports issues |
+| tests | Hard | Fails if tests fail |
+| untracked refs | Soft | Warns if tracked files reference untracked files |
+| coverage | Soft | Reports coverage (requires `gocoverbadge`) |
 
 ## Configuration
 
@@ -127,13 +173,42 @@ Running Go checks...
 
 === Summary ===
 ✓ Go: no local replace directives
+✓ Go: mod tidy
+✓ Go: build
 ✓ Go: gofmt
 ✓ Go: golangci-lint
 ✓ Go: tests
+✓ Go: untracked references
 
-Passed: 4, Failed: 0, Skipped: 0
+Passed: 7, Failed: 0, Skipped: 0
 
 All pre-push checks passed!
+```
+
+### With Warnings
+
+```
+$ prepush
+=== Pre-push Checks ===
+
+Detecting languages...
+  Found: go in .
+
+Running Go checks...
+
+=== Summary ===
+✓ Go: no local replace directives
+✓ Go: mod tidy
+✓ Go: build
+✓ Go: gofmt
+✓ Go: golangci-lint
+✓ Go: tests
+⚠ Go: untracked references (warning)
+  main.go may reference untracked utils.go
+
+Passed: 6, Failed: 0, Skipped: 0, Warnings: 1
+
+Pre-push checks passed with warnings.
 ```
 
 ### Monorepo (Go + TypeScript)
