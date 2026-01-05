@@ -101,7 +101,7 @@ func TestPrintResults(t *testing.T) {
 		{Name: "test3", Skipped: true, Reason: "not configured"},
 	}
 
-	passed, failed, skipped := PrintResults(results, false)
+	passed, failed, skipped, warnings := PrintResults(results, false)
 
 	if passed != 1 {
 		t.Errorf("expected 1 passed, got %d", passed)
@@ -111,5 +111,31 @@ func TestPrintResults(t *testing.T) {
 	}
 	if skipped != 1 {
 		t.Errorf("expected 1 skipped, got %d", skipped)
+	}
+	if warnings != 0 {
+		t.Errorf("expected 0 warnings, got %d", warnings)
+	}
+}
+
+func TestPrintResults_Warnings(t *testing.T) {
+	results := []Result{
+		{Name: "test1", Passed: true},
+		{Name: "test2", Warning: true, Passed: false, Output: "something to check"},
+		{Name: "test3", Warning: true, Passed: true},
+	}
+
+	passed, failed, skipped, warnings := PrintResults(results, false)
+
+	if passed != 2 {
+		t.Errorf("expected 2 passed, got %d", passed)
+	}
+	if failed != 0 {
+		t.Errorf("expected 0 failed, got %d", failed)
+	}
+	if skipped != 0 {
+		t.Errorf("expected 0 skipped, got %d", skipped)
+	}
+	if warnings != 1 {
+		t.Errorf("expected 1 warning, got %d", warnings)
 	}
 }

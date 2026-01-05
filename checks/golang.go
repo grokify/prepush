@@ -22,6 +22,12 @@ func (c *GoChecker) Check(dir string, opts Options) []Result {
 	// Check for local replace directives
 	results = append(results, c.checkNoLocalReplace(dir))
 
+	// Check go mod tidy
+	results = append(results, c.checkModTidy(dir))
+
+	// Check build
+	results = append(results, c.checkBuild(dir))
+
 	// Format check
 	if opts.Format {
 		results = append(results, c.checkFormat(dir))
@@ -37,7 +43,11 @@ func (c *GoChecker) Check(dir string, opts Options) []Result {
 		results = append(results, c.checkTest(dir))
 	}
 
-	// Coverage check (informational)
+	// Soft checks (warnings, don't fail build)
+	// Untracked file references
+	results = append(results, c.checkUntrackedReferences(dir))
+
+	// Coverage check
 	if opts.Coverage {
 		results = append(results, c.checkCoverage(dir, opts.GoExcludeCoverage))
 	}
@@ -142,10 +152,179 @@ func (c *GoChecker) checkCoverage(dir string, exclude string) Result {
 	}
 
 	result := RunCommand(name, dir, "gocoverbadge", args...)
-	// Coverage is informational, always passes
+	// Coverage is informational (soft check)
+	result.Warning = true
 	result.Passed = true
-	if result.Error == nil {
-		fmt.Printf("  %s\n", result.Output)
-	}
 	return result
+}
+
+func (c *GoChecker) checkModTidy(dir string) Result {
+	name := "Go: mod tidy"
+
+	// Run go mod tidy -diff to check if go.mod/go.sum need updating
+	// This is available in Go 1.21+
+	cmd := exec.Command("go", "mod", "tidy", "-diff")
+	cmd.Dir = dir
+	output, err := cmd.CombinedOutput()
+
+	// If -diff is not supported, fall back to checking manually
+	if err != nil && strings.Contains(string(output), "unknown flag") {
+		// Fall back: run go mod tidy and check for changes
+		return c.checkModTidyFallback(dir)
+	}
+
+	outputStr := strings.TrimSpace(string(output))
+	if outputStr != "" {
+		return Result{
+			Name:   name,
+			Passed: false,
+			Output: "go.mod or go.sum needs updating. Run: go mod tidy",
+		}
+	}
+
+	return Result{
+		Name:   name,
+		Passed: true,
+	}
+}
+
+func (c *GoChecker) checkModTidyFallback(dir string) Result {
+	name := "Go: mod tidy"
+
+	// Get current state of go.mod and go.sum
+	cmd := exec.Command("git", "diff", "--quiet", "go.mod", "go.sum")
+	cmd.Dir = dir
+	err := cmd.Run()
+	if err != nil {
+		return Result{
+			Name:   name,
+			Passed: false,
+			Output: "go.mod or go.sum has uncommitted changes",
+		}
+	}
+
+	// Run go mod tidy
+	tidyCmd := exec.Command("go", "mod", "tidy")
+	tidyCmd.Dir = dir
+	if err := tidyCmd.Run(); err != nil {
+		return Result{
+			Name:   name,
+			Passed: false,
+			Error:  err,
+		}
+	}
+
+	// Check if anything changed
+	checkCmd := exec.Command("git", "diff", "--quiet", "go.mod", "go.sum")
+	checkCmd.Dir = dir
+	err = checkCmd.Run()
+	if err != nil {
+		// Restore the original files
+		restoreCmd := exec.Command("git", "checkout", "go.mod", "go.sum")
+		restoreCmd.Dir = dir
+		_ = restoreCmd.Run() // Best effort restore, ignore error
+
+		return Result{
+			Name:   name,
+			Passed: false,
+			Output: "go.mod or go.sum needs updating. Run: go mod tidy",
+		}
+	}
+
+	return Result{
+		Name:   name,
+		Passed: true,
+	}
+}
+
+func (c *GoChecker) checkBuild(dir string) Result {
+	name := "Go: build"
+	return RunCommand(name, dir, "go", "build", "./...")
+}
+
+func (c *GoChecker) checkUntrackedReferences(dir string) Result {
+	name := "Go: untracked references"
+
+	// Get list of untracked files
+	cmd := exec.Command("git", "ls-files", "--others", "--exclude-standard")
+	cmd.Dir = dir
+	output, err := cmd.Output()
+	if err != nil {
+		return Result{
+			Name:    name,
+			Warning: true,
+			Passed:  true, // Can't check, so pass
+		}
+	}
+
+	untrackedFiles := strings.Split(strings.TrimSpace(string(output)), "\n")
+	if len(untrackedFiles) == 0 || (len(untrackedFiles) == 1 && untrackedFiles[0] == "") {
+		return Result{
+			Name:    name,
+			Warning: true,
+			Passed:  true,
+		}
+	}
+
+	// Get list of tracked files
+	trackedCmd := exec.Command("git", "ls-files")
+	trackedCmd.Dir = dir
+	trackedOutput, err := trackedCmd.Output()
+	if err != nil {
+		return Result{
+			Name:    name,
+			Warning: true,
+			Passed:  true,
+		}
+	}
+
+	trackedFiles := strings.Split(strings.TrimSpace(string(trackedOutput)), "\n")
+
+	// Check if any tracked file references an untracked file
+	var references []string
+	for _, tracked := range trackedFiles {
+		// Only check Go files and go.mod
+		if !strings.HasSuffix(tracked, ".go") && tracked != "go.mod" {
+			continue
+		}
+
+		for _, untracked := range untrackedFiles {
+			if untracked == "" {
+				continue
+			}
+			// Simple check: see if the untracked filename appears in the tracked file
+			// This is a heuristic and may have false positives
+			baseName := strings.TrimSuffix(untracked, ".go")
+			if strings.Contains(baseName, "/") {
+				parts := strings.Split(baseName, "/")
+				baseName = parts[len(parts)-1]
+			}
+
+			// Skip common patterns that are likely false positives
+			if baseName == "main" || baseName == "test" || baseName == "doc" {
+				continue
+			}
+
+			grepCmd := exec.Command("grep", "-l", baseName, tracked)
+			grepCmd.Dir = dir
+			if grepOutput, err := grepCmd.Output(); err == nil && len(grepOutput) > 0 {
+				references = append(references, fmt.Sprintf("%s may reference untracked %s", tracked, untracked))
+			}
+		}
+	}
+
+	if len(references) > 0 {
+		return Result{
+			Name:    name,
+			Warning: true,
+			Passed:  false,
+			Output:  strings.Join(references, "\n"),
+		}
+	}
+
+	return Result{
+		Name:    name,
+		Warning: true,
+		Passed:  true,
+	}
 }

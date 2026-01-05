@@ -16,6 +16,7 @@ type Result struct {
 	Error   error
 	Skipped bool
 	Reason  string
+	Warning bool // Soft check: reported but doesn't fail the build
 }
 
 // Checker is the interface for language-specific checks.
@@ -70,11 +71,33 @@ func CommandExists(command string) bool {
 }
 
 // PrintResults prints check results to stdout.
-func PrintResults(results []Result, verbose bool) (passed int, failed int, skipped int) {
+// Returns counts: passed, failed, skipped, warnings
+func PrintResults(results []Result, verbose bool) (passed int, failed int, skipped int, warnings int) {
 	for _, r := range results {
 		if r.Skipped {
 			fmt.Printf("⊘ %s (skipped: %s)\n", r.Name, r.Reason)
 			skipped++
+			continue
+		}
+
+		if r.Warning {
+			// Soft check: show warning but count as passed
+			if r.Passed {
+				fmt.Printf("✓ %s\n", r.Name)
+			} else {
+				fmt.Printf("⚠ %s (warning)\n", r.Name)
+				warnings++
+			}
+			// Always show output for warnings
+			if r.Output != "" {
+				lines := strings.Split(r.Output, "\n")
+				for _, line := range lines {
+					fmt.Printf("  %s\n", line)
+				}
+			}
+			if r.Passed {
+				passed++
+			}
 			continue
 		}
 
@@ -100,7 +123,7 @@ func PrintResults(results []Result, verbose bool) (passed int, failed int, skipp
 		}
 	}
 
-	return passed, failed, skipped
+	return passed, failed, skipped, warnings
 }
 
 // FileExists checks if a file exists.

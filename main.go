@@ -157,9 +157,13 @@ func main() {
 
 	// Print summary
 	fmt.Println("=== Summary ===")
-	passed, failed, skipped := checks.PrintResults(allResults, cfg.Verbose)
+	passed, failed, skipped, warnings := checks.PrintResults(allResults, cfg.Verbose)
 	fmt.Println()
-	fmt.Printf("Passed: %d, Failed: %d, Skipped: %d\n", passed, failed, skipped)
+	if warnings > 0 {
+		fmt.Printf("Passed: %d, Failed: %d, Skipped: %d, Warnings: %d\n", passed, failed, skipped, warnings)
+	} else {
+		fmt.Printf("Passed: %d, Failed: %d, Skipped: %d\n", passed, failed, skipped)
+	}
 
 	if failed > 0 {
 		fmt.Println()
@@ -168,5 +172,9 @@ func main() {
 	}
 
 	fmt.Println()
-	fmt.Println("All pre-push checks passed!")
+	if warnings > 0 {
+		fmt.Println("Pre-push checks passed with warnings.")
+	} else {
+		fmt.Println("All pre-push checks passed!")
+	}
 }
