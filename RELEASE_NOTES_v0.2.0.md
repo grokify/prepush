@@ -1,0 +1,83 @@
+# Release Notes - v0.2.0
+
+**Release Date:** 2026-01-04
+
+## Overview
+
+This release adds new Go checks, introduces a soft warnings system for non-blocking issues, and fixes a critical bug in directory detection. The README has been expanded with comprehensive git hook setup instructions.
+
+## Highlights
+
+### New Go Checks
+
+Three new checks for Go projects:
+
+| Check | Type | Description |
+|-------|------|-------------|
+| `go mod tidy` | Hard | Fails if go.mod/go.sum need updating |
+| `go build` | Hard | Fails if project doesn't compile |
+| untracked refs | Soft | Warns if tracked files reference untracked files |
+
+### Soft Warnings System
+
+New `Warning` field in check results allows checks to report issues without failing the build:
+
+```
+=== Summary ===
+✓ Go: no local replace directives
+✓ Go: mod tidy
+✓ Go: build
+⚠ Go: untracked references (warning)
+  main.go may reference untracked utils.go
+
+Passed: 6, Failed: 0, Skipped: 0, Warnings: 1
+
+Pre-push checks passed with warnings.
+```
+
+Soft checks are useful for:
+
+- Informational checks (coverage reporting)
+- Heuristic checks that may have false positives (untracked references)
+- Checks you want visibility into but don't want to block on
+
+### Expanded Git Hook Documentation
+
+Three options for setting up prepush as a git hook:
+
+1. **Script**: Create `.git/hooks/pre-push` manually
+2. **Symlink**: `ln -sf $(which prepush) .git/hooks/pre-push`
+3. **Shared hooks**: Use `.githooks/` directory with `git config core.hooksPath`
+
+## Bug Fixes
+
+### Directory Walking Fix
+
+Fixed a critical bug where prepush would skip the current directory when run with `.` as the target. The issue was that `filepath.WalkDir` returns `.` as the first entry, and the hidden directory check (`name[0] == '.'`) incorrectly matched it.
+
+**Before:** `prepush` in a Go project reported "No supported languages detected"
+**After:** Correctly detects Go and runs all checks
+
+## Breaking Changes
+
+None. This release is fully backwards compatible.
+
+## Installation
+
+```bash
+go install github.com/grokify/prepush@v0.2.0
+```
+
+## What's Next
+
+Planned for future releases:
+
+- Python checks (pytest, black, ruff)
+- Rust checks (cargo build, cargo test, cargo clippy)
+- Configuration for soft vs hard check behavior
+
+## Links
+
+- [Full Changelog](CHANGELOG.md)
+- [README](README.md)
+- [GitHub Repository](https://github.com/grokify/prepush)

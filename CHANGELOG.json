@@ -4,8 +4,33 @@
   "repository": "https://github.com/grokify/prepush",
   "releases": [
     {
+      "version": "0.2.0",
+      "date": "2026-01-04",
+      "highlights": [
+        { "description": "Catch more issues locally with new `go build` and `go mod tidy` checks, plus soft warnings that inform without blocking" }
+      ],
+      "added": [
+        { "description": "Go check: `go mod tidy` to verify go.mod/go.sum are up to date" },
+        { "description": "Go check: `go build` to ensure project compiles" },
+        { "description": "Go check: untracked references detection (soft warning)" },
+        { "description": "Soft warnings system: checks that report issues but don't fail the build" },
+        { "description": "Git hook setup instructions with three options (script, symlink, shared hooks)" }
+      ],
+      "fixed": [
+        { "description": "Directory walking now correctly handles current directory (`.`)" }
+      ],
+      "documentation": [
+        { "description": "Expanded README with git hook setup options and bypass instructions" },
+        { "description": "Added Go checks detail table documenting hard vs soft checks" },
+        { "description": "Updated example output to show all 7 checks including warnings" }
+      ]
+    },
+    {
       "version": "0.1.0",
       "date": "2026-01-04",
+      "highlights": [
+        { "description": "One command to run all pre-push checks across Go, TypeScript, and JavaScript - with auto-detection and monorepo support" }
+      ],
       "added": [
         { "description": "Multi-language pre-push hook with auto-detection" },
         { "description": "Go checks: `gofmt`, `golangci-lint`, `go test`, local replace directive detection" },
