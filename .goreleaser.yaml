@@ -1,0 +1,146 @@
+# GoReleaser configuration for release-agent
+# Documentation: https://goreleaser.com
+
+version: 2
+
+project_name: releaseagent
+
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+
+builds:
+  - id: releaseagent
+    main: ./cmd/releaseagent
+    binary: releaseagent
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+archives:
+  - id: releaseagent
+    builds:
+      - releaseagent
+    format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+      - CHANGELOG.md
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore:'
+      - '^ci:'
+      - Merge pull request
+      - Merge branch
+  groups:
+    - title: Features
+      regexp: '^feat'
+      order: 0
+    - title: Bug Fixes
+      regexp: '^fix'
+      order: 1
+    - title: Performance
+      regexp: '^perf'
+      order: 2
+    - title: Refactoring
+      regexp: '^refactor'
+      order: 3
+    - title: Other
+      order: 999
+
+release:
+  github:
+    owner: grokify
+    name: release-agent
+  draft: false
+  prerelease: auto
+  mode: replace
+  header: |
+    ## Release {{ .Tag }}
+
+    {{ .TagSubject }}
+
+  footer: |
+    ---
+
+    **Full Changelog**: https://github.com/grokify/release-agent/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+    ### Installation
+
+    ```bash
+    # Go install
+    go install github.com/grokify/release-agent/cmd/releaseagent@{{ .Tag }}
+
+    # Homebrew (macOS/Linux)
+    brew install grokify/tap/releaseagent
+    ```
+
+brews:
+  - name: releaseagent
+    ids:
+      - releaseagent
+    repository:
+      owner: grokify
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    directory: Formula
+    homepage: https://github.com/grokify/release-agent
+    description: Autonomous release preparation agent for multi-language repositories
+    license: Apache-2.0
+    dependencies:
+      - name: git
+      - name: gh
+    test: |
+      system "#{bin}/releaseagent", "version"
+    install: |
+      bin.install "releaseagent"
+
+announce:
+  skip: true
+
+# Signs the checksum file
+signs:
+  - artifacts: checksum
+    args:
+      - "--batch"
+      - "-u"
+      - "{{ .Env.GPG_FINGERPRINT }}"
+      - "--output"
+      - "${signature}"
+      - "--detach-sign"
+      - "${artifact}"
