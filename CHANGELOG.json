@@ -2,6 +2,8 @@
   "ir_version": "1.0",
   "project": "release-agent",
   "repository": "https://github.com/grokify/release-agent",
+  "versioning": "semver",
+  "commit_convention": "conventional",
   "releases": [
     {
       "version": "0.3.0",
@@ -10,39 +12,40 @@
         { "description": "Complete transformation from pre-push validation tool to release automation platform with workflow engine, Claude Code integration, and multi-platform plugin support" }
       ],
       "added": [
-        { "description": "CLI restructure with Cobra framework and 7 commands: `check`, `validate`, `release`, `changelog`, `readme`, `roadmap`, `version`" },
-        { "description": "Release workflow engine with 9-step process: validate → check → changelog → commit → push → CI wait → tag" },
-        { "description": "Comprehensive validation command with 4 areas: QA, Documentation, Release, Security" },
-        { "description": "Team status report format (`--format team`) with template-based box output" },
-        { "description": "Report package (`pkg/report`) with structured data types and text/template renderer" },
-        { "description": "Actions framework with `Run()`, `Propose()`, `Apply()` pattern" },
-        { "description": "ChangelogAction with schangelog integration" },
-        { "description": "RoadmapAction with sroadmap integration" },
-        { "description": "ReadmeAction for badge and version updates" },
-        { "description": "Interactive mode with `--interactive` flag for Claude Code" },
-        { "description": "JSON output mode with `--json` flag" },
-        { "description": "TOON output format (Token-Oriented Object Notation) ~8x more token-efficient" },
-        { "description": "Claude Code plugin with commands, skills, agents, and hooks" },
-        { "description": "Gemini plugin support via platform adapters" },
-        { "description": "SecurityChecker: LICENSE, govulncheck, dependency audit, secret detection" },
-        { "description": "DocChecker: README, PRD, TRD, release notes, changelog validation" },
-        { "description": "ReleaseChecker: version format, git status, CI configuration" },
-        { "description": "Error handling compliance check (detects `_ = err` patterns)" },
-        { "description": "Git wrapper package with tag, commit, push, status operations" },
-        { "description": "CI status checking via gh CLI with WaitForCI support" },
-        { "description": "GoReleaser configuration for multi-platform builds" },
-        { "description": "Homebrew formula" }
+        { "description": "CLI restructure with Cobra framework and 7 commands: `check`, `validate`, `release`, `changelog`, `readme`, `roadmap`, `version`", "commit": "554e12a" },
+        { "description": "Release workflow engine with 9-step process: validate → check → changelog → commit → push → CI wait → tag", "commit": "960f1c8" },
+        { "description": "Comprehensive validation command with 4 areas: QA, Documentation, Release, Security", "commit": "554e12a" },
+        { "description": "Team status report format (`--format team`) with template-based box output", "commit": "0ce034f" },
+        { "description": "Report package (`pkg/report`) with structured data types and text/template renderer", "commit": "0ce034f" },
+        { "description": "Actions framework with `Run()`, `Propose()`, `Apply()` pattern", "commit": "960f1c8" },
+        { "description": "ChangelogAction with schangelog integration", "commit": "960f1c8" },
+        { "description": "RoadmapAction with sroadmap integration", "commit": "960f1c8" },
+        { "description": "ReadmeAction for badge and version updates", "commit": "960f1c8" },
+        { "description": "Interactive mode with `--interactive` flag for Claude Code", "commit": "960f1c8" },
+        { "description": "JSON output mode with `--json` flag", "commit": "a1d48f7" },
+        { "description": "TOON output format (Token-Oriented Object Notation) ~8x more token-efficient", "commit": "a1d48f7" },
+        { "description": "Claude Code plugin with commands, skills, agents, and hooks", "commit": "e2602b2" },
+        { "description": "Gemini plugin support via platform adapters", "commit": "e2602b2" },
+        { "description": "SecurityChecker: LICENSE, govulncheck, dependency audit, secret detection", "commit": "554e12a" },
+        { "description": "DocChecker: README, PRD, TRD, release notes, changelog validation", "commit": "554e12a" },
+        { "description": "ReleaseChecker: version format, git status, CI configuration", "commit": "554e12a" },
+        { "description": "Error handling compliance check (detects `_ = err` patterns)", "commit": "554e12a" },
+        { "description": "Git wrapper package with tag, commit, push, status operations", "commit": "960f1c8" },
+        { "description": "CI status checking via gh CLI with WaitForCI support", "commit": "960f1c8" },
+        { "description": "GoReleaser configuration for multi-platform builds", "commit": "3e8dcc9" },
+        { "description": "Homebrew formula", "commit": "3e8dcc9" }
       ],
       "changed": [
-        { "description": "Module path from `github.com/grokify/prepush` to `github.com/grokify/release-agent`" },
-        { "description": "Package structure from flat to `cmd/` and `pkg/` layout" },
-        { "description": "Configuration file from `.prepush.yaml` to `.releaseagent.yaml`" }
+        { "description": "Module path from `github.com/grokify/prepush` to `github.com/grokify/release-agent`", "breaking": true, "commit": "554e12a" },
+        { "description": "Package structure from flat to `cmd/` and `pkg/` layout", "breaking": true, "commit": "554e12a" },
+        { "description": "Configuration file from `.prepush.yaml` to `.releaseagent.yaml`", "commit": "554e12a" }
       ],
       "documentation": [
-        { "description": "Updated README with all new commands and features" },
-        { "description": "Updated PRD with completed feature status" },
-        { "description": "Updated TRD with new architecture and interfaces" },
-        { "description": "Added release notes for v0.3.0" }
+        { "description": "Updated README with all new commands and features", "commit": "51320ae" },
+        { "description": "Updated PRD with completed feature status", "commit": "51320ae" },
+        { "description": "Updated TRD with new architecture and interfaces", "commit": "51320ae" },
+        { "description": "Added MkDocs documentation site with Material theme", "commit": "f8f3024" },
+        { "description": "Added release notes for v0.3.0", "commit": "f8f3024" }
       ]
     },
     {
@@ -52,19 +55,20 @@
         { "description": "Catch more issues locally with new `go build` and `go mod tidy` checks, plus soft warnings that inform without blocking" }
       ],
       "added": [
-        { "description": "Go check: `go mod tidy` to verify go.mod/go.sum are up to date" },
-        { "description": "Go check: `go build` to ensure project compiles" },
-        { "description": "Go check: untracked references detection (soft warning)" },
-        { "description": "Soft warnings system: checks that report issues but don't fail the build" },
-        { "description": "Git hook setup instructions with three options (script, symlink, shared hooks)" }
+        { "description": "Go check: `go mod tidy` to verify go.mod/go.sum are up to date", "commit": "7d15a92" },
+        { "description": "Go check: `go build` to ensure project compiles", "commit": "7d15a92" },
+        { "description": "Go check: untracked references detection (soft warning)", "commit": "7d15a92" },
+        { "description": "Soft warnings system: checks that report issues but don't fail the build", "commit": "7d15a92" },
+        { "description": "Git hook setup instructions with three options (script, symlink, shared hooks)", "commit": "01205fa" }
       ],
       "fixed": [
-        { "description": "Directory walking now correctly handles current directory (`.`)" }
+        { "description": "Directory walking now correctly handles current directory (`.`)", "commit": "d00548b" }
       ],
       "documentation": [
-        { "description": "Expanded README with git hook setup options and bypass instructions" },
-        { "description": "Added Go checks detail table documenting hard vs soft checks" },
-        { "description": "Updated example output to show all 7 checks including warnings" }
+        { "description": "Expanded README with git hook setup options and bypass instructions", "commit": "01205fa" },
+        { "description": "Added Go checks detail table documenting hard vs soft checks", "commit": "01205fa" },
+        { "description": "Updated example output to show all 7 checks including warnings", "commit": "01205fa" },
+        { "description": "Added CHANGELOG and release notes for v0.2.0", "commit": "e90fa66" }
       ]
     },
     {
@@ -74,19 +78,20 @@
         { "description": "One command to run all pre-push checks across Go, TypeScript, and JavaScript - with auto-detection and monorepo support" }
       ],
       "added": [
-        { "description": "Multi-language pre-push hook with auto-detection" },
-        { "description": "Go checks: `gofmt`, `golangci-lint`, `go test`, local replace directive detection" },
-        { "description": "TypeScript/JavaScript checks: `eslint`, `prettier`, `tsc --noEmit`, `npm test`" },
-        { "description": "Language detection for Go, TypeScript, JavaScript, Python, Rust, Swift" },
-        { "description": "Monorepo support with multiple language detection per repository" },
-        { "description": "Configuration via `.prepush.yaml` with per-language settings" },
-        { "description": "CLI flags: `--verbose`, `--no-test`, `--no-lint`, `--no-format`, `--coverage`" }
+        { "description": "Multi-language pre-push hook with auto-detection", "commit": "729733d" },
+        { "description": "Go checks: `gofmt`, `golangci-lint`, `go test`, local replace directive detection", "commit": "729733d" },
+        { "description": "TypeScript/JavaScript checks: `eslint`, `prettier`, `tsc --noEmit`, `npm test`", "commit": "729733d" },
+        { "description": "Language detection for Go, TypeScript, JavaScript, Python, Rust, Swift", "commit": "729733d" },
+        { "description": "Monorepo support with multiple language detection per repository", "commit": "729733d" },
+        { "description": "Configuration via `.prepush.yaml` with per-language settings", "commit": "729733d" },
+        { "description": "CLI flags: `--verbose`, `--no-test`, `--no-lint`, `--no-format`, `--coverage`", "commit": "729733d" }
       ],
       "documentation": [
-        { "description": "README with installation, usage, and configuration examples" }
+        { "description": "README with installation, usage, and configuration examples", "commit": "729733d" },
+        { "description": "Added CHANGELOG and release notes for v0.1.0", "commit": "6a78e95" }
       ],
       "tests": [
-        { "description": "Unit tests for detect, config, and checks packages" }
+        { "description": "Unit tests for detect, config, and checks packages", "commit": "729733d" }
       ]
     }
   ]
