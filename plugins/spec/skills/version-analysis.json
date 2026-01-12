@@ -1,0 +1,7 @@
+{
+  "name": "version-analysis",
+  "description": "Analyzes git history to determine semantic version bumps based on conventional commits. Use when determining next version, analyzing recent changes, or reviewing commit history for release preparation.",
+  "instructions": "Analyze git history and conventional commits to determine appropriate semantic version bumps.\n\n## Process\n\n1. Get current version: `git describe --tags --abbrev=0`\n2. Analyze commits: `schangelog parse-commits --since=<tag>`\n3. Apply semantic versioning rules:\n   - MAJOR: Breaking changes\n   - MINOR: New features (feat:)\n   - PATCH: Bug fixes (fix:)\n\n## Output Format\n\n```\nCurrent Version: vX.Y.Z\nCommits Since Tag: N commits\nBreakdown:\n  - Features (feat): M\n  - Fixes (fix): N\n  - Breaking Changes: P\nSuggested Version: vA.B.C\nReasoning: Explanation\n```",
+  "triggers": ["version", "semver", "next version", "version bump"],
+  "dependencies": ["git", "schangelog"]
+}

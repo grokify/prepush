@@ -1,0 +1,7 @@
+{
+  "name": "commit-classification",
+  "description": "Classifies commits according to conventional commits specification and maps them to changelog categories. Use when categorizing changes for changelogs or understanding commit types.",
+  "instructions": "Classify git commits according to the Conventional Commits specification (v1.0.0).\n\n## Commit Types and Changelog Mapping\n\n| Type | Changelog Category |\n|------|-------------------|\n| feat | Added |\n| fix | Fixed |\n| docs | Documentation |\n| refactor | Changed |\n| perf | Changed |\n| revert | Removed |\n\n## Breaking Changes\n\nIndicated by:\n- `!` after type: `feat!: remove API`\n- `BREAKING CHANGE:` in footer\n\n## Classification Process\n\n```bash\nschangelog parse-commits --since=<tag>\n```\n\n## Output Format\n\n```\nCommit: <hash>\nSubject: <subject>\nType: <type>\nScope: <scope>\nBreaking: yes/no\nCategory: <changelog category>\n```",
+  "triggers": ["classify", "commit type", "changelog category", "conventional commit"],
+  "dependencies": ["git", "schangelog"]
+}

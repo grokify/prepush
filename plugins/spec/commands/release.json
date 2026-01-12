@@ -1,0 +1,39 @@
+{
+  "name": "release",
+  "description": "Execute full release workflow for the specified version",
+  "arguments": [
+    {
+      "name": "version",
+      "type": "string",
+      "required": true,
+      "pattern": "^v?\\d+\\.\\d+\\.\\d+",
+      "hint": "v1.2.3",
+      "description": "Semantic version for the release"
+    }
+  ],
+  "instructions": "Execute the complete release workflow for the specified version.\n\nThis command runs the full release process including validation, changelog generation, and git tagging.",
+  "process": [
+    "Validate version format and check it doesn't exist",
+    "Check working directory is clean",
+    "Run validation checks (build, test, lint, format)",
+    "Generate changelog via schangelog",
+    "Update roadmap via sroadmap",
+    "Create release commit",
+    "Push to remote",
+    "Wait for CI to pass",
+    "Create and push release tag"
+  ],
+  "dependencies": ["releaseagent", "schangelog", "git"],
+  "examples": [
+    {
+      "description": "Create a release",
+      "input": "/release-agent:release v0.9.0",
+      "output": "Executes: releaseagent release v0.9.0 --verbose"
+    },
+    {
+      "description": "Dry run",
+      "input": "releaseagent release v1.0.0 --dry-run",
+      "output": "Preview changes without executing"
+    }
+  ]
+}

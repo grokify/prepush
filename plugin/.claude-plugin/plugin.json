@@ -1,0 +1,26 @@
+{
+  "name": "release-agent",
+  "version": "1.0.0",
+  "description": "Automates software release workflows including versioning, changelog generation, CI verification, and Git tagging for multi-language repositories",
+  "author": {
+    "name": "John Wang",
+    "url": "https://github.com/grokify"
+  },
+  "homepage": "https://github.com/grokify/release-agent",
+  "repository": "https://github.com/grokify/release-agent",
+  "license": "Apache-2.0",
+  "keywords": [
+    "release",
+    "versioning",
+    "changelog",
+    "ci-cd",
+    "automation",
+    "go",
+    "typescript",
+    "multi-language"
+  ],
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}

@@ -1,0 +1,13 @@
+process = ['Get current version from latest git tag', 'Parse commits since that tag', 'Classify commits by type', 'Determine version bump (major/minor/patch)', 'Suggest next version with reasoning']
+
+[command]
+name = 'version-next'
+description = 'Analyze commits and suggest next semantic version'
+
+[content]
+instructions = "Analyze git history since the last tag and suggest the next semantic version based on conventional commits.\n\nGiven `vMAJOR.MINOR.PATCH`:\n- Breaking changes bump MAJOR\n- New features (feat:) bump MINOR\n- Bug fixes (fix:) bump PATCH"
+
+[[examples]]
+description = 'Analyze and suggest version'
+input = '/release-agent:version-next'
+output = 'Current: v0.8.0, Suggested: v0.9.0 (3 new features)'

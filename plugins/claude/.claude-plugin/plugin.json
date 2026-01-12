@@ -1,0 +1,13 @@
+{
+  "name": "release-agent",
+  "version": "1.0.0",
+  "description": "Automates software release workflows including versioning, changelog generation, CI verification, and Git tagging for multi-language repositories",
+  "author": "grokify",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/grokify/release-agent",
+  "homepage": "https://github.com/grokify/release-agent",
+  "commands": "./commands/",
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "hooks": "./hooks/hooks.json"
+}

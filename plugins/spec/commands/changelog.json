@@ -1,0 +1,30 @@
+{
+  "name": "changelog",
+  "description": "Generate changelog entries for the specified version",
+  "arguments": [
+    {
+      "name": "version",
+      "type": "string",
+      "required": true,
+      "pattern": "^v?\\d+\\.\\d+\\.\\d+",
+      "hint": "v1.2.3",
+      "description": "Version to generate changelog for"
+    }
+  ],
+  "instructions": "Generate changelog entries for the specified version based on commits since the last tag.\n\nUses schangelog to parse conventional commits and generate structured changelog entries.",
+  "process": [
+    "Get current version from latest git tag",
+    "Parse commits since that tag using schangelog",
+    "Classify commits by type (feat, fix, docs, etc.)",
+    "Generate changelog entries in CHANGELOG.json",
+    "Regenerate CHANGELOG.md"
+  ],
+  "dependencies": ["schangelog", "git"],
+  "examples": [
+    {
+      "description": "Generate changelog",
+      "input": "/release-agent:changelog v0.9.0",
+      "output": "Updates CHANGELOG.json and CHANGELOG.md"
+    }
+  ]
+}

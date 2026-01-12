@@ -1,0 +1,22 @@
+{
+  "name": "release-agent",
+  "version": "1.0.0",
+  "description": "Automates software release workflows including versioning, changelog generation, CI verification, and Git tagging for multi-language repositories",
+  "author": "grokify",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/grokify/release-agent",
+  "homepage": "https://github.com/grokify/release-agent",
+  "commands": "commands",
+  "skills": "skills",
+  "agents": "agents",
+  "hooks": "hooks/hooks.json",
+  "context": "# Release Agent\n\nThis plugin automates software release workflows for multi-language repositories.\n\n## Available Commands\n\n- `/release-agent:release <version>` - Execute full release workflow\n- `/release-agent:check` - Run validation checks\n- `/release-agent:changelog <version>` - Generate changelog\n- `/release-agent:version-next` - Suggest next version\n\n## Supported Languages\n\n- Go (build, test, golangci-lint, gofmt)\n- TypeScript/JavaScript (ESLint, Prettier, npm test)\n\n## Dependencies\n\n- `releaseagent` - Release automation CLI\n- `schangelog` - Changelog generation\n- `git` - Version control\n- `gh` - GitHub CLI",
+  "dependencies": [
+    {"name": "git", "command": "git"},
+    {"name": "gh", "command": "gh"},
+    {"name": "releaseagent", "command": "releaseagent"},
+    {"name": "schangelog", "command": "schangelog"},
+    {"name": "sroadmap", "command": "sroadmap", "optional": true},
+    {"name": "golangci-lint", "command": "golangci-lint", "optional": true}
+  ]
+}

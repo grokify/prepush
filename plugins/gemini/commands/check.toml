@@ -1,0 +1,13 @@
+process = ['Detect project language(s)', 'Run language-specific build checks', 'Run test suite', 'Run linter', 'Check code formatting', 'Report pass/fail status for each check']
+
+[command]
+name = 'check'
+description = 'Run validation checks on the current repository'
+
+[content]
+instructions = "Run all validation checks for the current repository without making any changes.\n\n## Go Projects\n- `go build ./...` - Compilation\n- `go test ./...` - Unit tests\n- `golangci-lint run` - Linting\n- `gofmt` - Formatting\n- `go mod tidy` - Dependencies\n\n## TypeScript/JavaScript Projects\n- `npm test` or `yarn test` - Tests\n- `eslint` - Linting\n- `prettier --check` - Formatting\n- `tsc --noEmit` - Type checking"
+
+[[examples]]
+description = 'Run checks'
+input = '/release-agent:check'
+output = 'releaseagent check --verbose'
