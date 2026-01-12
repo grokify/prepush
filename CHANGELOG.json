@@ -6,7 +6,7 @@
   "commit_convention": "conventional",
   "releases": [
     {
-      "version": "0.3.0",
+      "version": "v0.3.0",
       "date": "2026-01-12",
       "highlights": [
         { "description": "Complete transformation from pre-push validation tool to release automation platform with workflow engine, Claude Code integration, and multi-platform plugin support" }
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "version": "0.2.0",
+      "version": "v0.2.0",
       "date": "2026-01-04",
       "highlights": [
         { "description": "Catch more issues locally with new `go build` and `go mod tidy` checks, plus soft warnings that inform without blocking" }
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "version": "0.1.0",
+      "version": "v0.1.0",
       "date": "2026-01-04",
       "highlights": [
         { "description": "One command to run all pre-push checks across Go, TypeScript, and JavaScript - with auto-detection and monorepo support" }
