@@ -1,4 +1,4 @@
-# Release Agent
+# Release Agent Team
 
 [![Build Status][build-status-svg]][build-status-url]
 [![Lint Status][lint-status-svg]][lint-status-url]
@@ -6,9 +6,9 @@
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![License][license-svg]][license-url]
 
-**Autonomous release preparation agent for multi-language repositories.**
+**Multi-agent release preparation team for multi-language repositories.**
 
-Release Agent validates code quality, generates changelogs, updates documentation, and manages the complete release lifecycle. It supports monorepos with multiple languages and integrates with Claude Code as an interactive subagent.
+Release Agent Team validates code quality, generates changelogs, updates documentation, and manages the complete release lifecycle using a team of specialized agents (PM, QA, Documentation, Security, Release). It supports monorepos with multiple languages and integrates with Claude Code, Kiro CLI, and other AI assistant platforms.
 
 ## Features
 
@@ -25,13 +25,13 @@ Release Agent validates code quality, generates changelogs, updates documentatio
 ## Installation
 
 ```bash
-go install github.com/grokify/release-agent/cmd/releaseagent@latest
+go install github.com/agentplexus/release-agent-team/cmd/releaseagent@latest
 ```
 
 ### Homebrew
 
 ```bash
-brew install grokify/tap/releaseagent
+brew install agentplexus/tap/releaseagent
 ```
 
 ## Quick Start
@@ -287,7 +287,7 @@ Structured box report with per-team validation results:
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                             TEAM STATUS REPORT                             ║
 ╠════════════════════════════════════════════════════════════════════════════╣
-║ Project: github.com/grokify/release-agent                                  ║
+║ Project: github.com/agentplexus/release-agent-team                         ║
 ║ Target:  v0.3.0                                                            ║
 ╠════════════════════════════════════════════════════════════════════════════╣
 ║ RELEASE VALIDATION                                                         ║
@@ -305,13 +305,21 @@ Structured box report with per-team validation results:
 ╚════════════════════════════════════════════════════════════════════════════╝
 ```
 
-## Claude Code Integration
+## Claude Code Plugin
 
-Release Agent includes a Claude Code plugin with:
+Install as a Claude Code plugin for interactive release automation:
 
-- **Commands**: `/release-agent:release`, `/release-agent:check`, `/release-agent:changelog`, `/release-agent:version-next`
+```bash
+claude plugin add github:agentplexus/release-agent-team/plugins/claude
+```
+
+The plugin includes:
+
+- **Commands**: `/release-agent-team:release`, `/release-agent-team:check`, `/release-agent-team:changelog`, `/release-agent-team:version-next`
 - **Skills**: Version analysis, commit classification
-- **Agents**: Release coordinator for orchestrating complete releases
+- **Agents**: 6 specialized agents (PM, QA, Documentation, Security, Release, Coordinator)
+
+See [plugins/claude/README.md](plugins/claude/README.md) for full plugin documentation.
 
 ### Interactive Mode
 
@@ -452,13 +460,13 @@ Release v1.0.0 complete!
 
 MIT License - see [LICENSE](LICENSE) for details.
 
- [build-status-svg]: https://github.com/grokify/release-agent/actions/workflows/ci.yaml/badge.svg?branch=main
- [build-status-url]: https://github.com/grokify/release-agent/actions/workflows/ci.yaml
- [lint-status-svg]: https://github.com/grokify/release-agent/actions/workflows/lint.yaml/badge.svg?branch=main
- [lint-status-url]: https://github.com/grokify/release-agent/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/release-agent
- [goreport-url]: https://goreportcard.com/report/github.com/grokify/release-agent
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/release-agent
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/release-agent
+ [build-status-svg]: https://github.com/agentplexus/release-agent-team/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/agentplexus/release-agent-team/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/agentplexus/release-agent-team/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/agentplexus/release-agent-team/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/agentplexus/release-agent-team
+ [goreport-url]: https://goreportcard.com/report/github.com/agentplexus/release-agent-team
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/agentplexus/release-agent-team
+ [docs-godoc-url]: https://pkg.go.dev/github.com/agentplexus/release-agent-team
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/release-agent/blob/master/LICENSE
+ [license-url]: https://github.com/agentplexus/release-agent-team/blob/master/LICENSE

@@ -1,10 +1,10 @@
 {
-  "name": "release-agent",
+  "name": "release-agent-team",
   "version": "1.0.0",
-  "description": "Automates software release workflows including versioning, changelog generation, CI verification, and Git tagging for multi-language repositories",
-  "author": "grokify",
+  "description": "Multi-agent team for automating software release workflows including versioning, changelog generation, CI verification, security scanning, and Git tagging",
+  "author": "agentplexus",
   "license": "Apache-2.0",
-  "repository": "https://github.com/grokify/release-agent",
-  "homepage": "https://github.com/grokify/release-agent",
+  "repository": "https://github.com/agentplexus/release-agent-team",
+  "homepage": "https://github.com/agentplexus/release-agent-team",
   "contextFileName": "GEMINI.md"
 }

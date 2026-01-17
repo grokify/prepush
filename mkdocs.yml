@@ -1,8 +1,8 @@
-site_name: Release Agent
-site_description: Autonomous release preparation agent for multi-language repositories
-site_url: https://grokify.github.io/release-agent/
-repo_url: https://github.com/grokify/release-agent
-repo_name: grokify/release-agent
+site_name: Release Agent Team
+site_description: Multi-agent release preparation team for multi-language repositories
+site_url: https://agentplexus.github.io/release-agent-team/
+repo_url: https://github.com/agentplexus/release-agent-team
+repo_name: agentplexus/release-agent-team
 
 theme:
   name: material
@@ -55,7 +55,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/grokify/release-agent
+      link: https://github.com/agentplexus/release-agent-team
 
 nav:
   - Home: index.md

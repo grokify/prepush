@@ -1,7 +1,7 @@
 {
   "ir_version": "1.0",
-  "project": "Release Agent",
-  "repository": "https://github.com/grokify/release-agent",
+  "project": "Release Agent Team",
+  "repository": "https://github.com/agentplexus/release-agent-team",
 
   "legend": {
     "completed": {"emoji": "✅", "description": "Completed"},
@@ -141,7 +141,7 @@
     {
       "id": "rename-repo",
       "title": "Rename repository to release-agent",
-      "description": "Update module path to github.com/grokify/release-agent",
+      "description": "Update module path to github.com/agentplexus/release-agent-team",
       "status": "completed",
       "version": "0.2.0",
       "phase": "v0.2",
@@ -471,7 +471,7 @@
     {
       "id": "homebrew",
       "title": "Homebrew formula",
-      "description": "Publish to grokify/tap",
+      "description": "Publish to agentplexus/tap",
       "status": "completed",
       "version": "0.3.0",
       "phase": "v0.3",

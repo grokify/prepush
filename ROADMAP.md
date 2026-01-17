@@ -36,11 +36,11 @@ Incorporate feedback from real-world usage before v1.0
 
 **Version:** 0.8.0
 
-### [x] Rename repository to release-agent
+### [x] Rename repository to release-agent-team
 
-Update module path to github.com/grokify/release-agent
+Update module path to github.com/agentplexus/release-agent-team
 
-**Version:** 0.2.0
+**Version:** 0.4.0
 
 ### [x] Restructure to cmd/releaseagent
 
@@ -166,7 +166,7 @@ GitLab CI status and release creation
 
 ### [x] Claude Code plugin structure
 
-plugin/ directory with commands, skills, agents, hooks
+plugins/claude/ directory with commands, skills, agents generated from canonical specs
 
 **Version:** 0.3.0
 
@@ -228,11 +228,23 @@ Multi-platform builds with GoReleaser
 
 **Version:** 0.3.0
 
-### [ ] Publish to Claude Code Plugin Marketplace
+### [x] Claude Code plugin via GitHub
 
-Submit and publish plugin to Claude Code marketplace
+Install directly from GitHub: `claude plugin add github:agentplexus/release-agent-team/plugins/claude`
 
 **Version:** 0.4.0
+
+### [ ] Publish to Claude Code Official Marketplace
+
+Submit PR to anthropics/claude-plugins-official for official listing
+
+**Version:** 0.4.0
+
+### [x] Gemini CLI extension via GitHub
+
+Install directly from GitHub for Gemini CLI
+
+**Version:** 0.3.0
 
 ### [ ] Publish to Gemini CLI Extensions Marketplace
 
@@ -240,15 +252,21 @@ Submit and publish extension to Gemini CLI marketplace
 
 **Version:** 0.4.0
 
-### [x] Gemini CLI plugin structure
+### [x] Kiro CLI agent support
 
-TOML-based plugin for Gemini CLI Extensions
+Generate Kiro CLI agent configs via aiassistkit
 
 **Version:** 0.3.0
 
 ### [x] Homebrew formula
 
-Publish to grokify/tap
+Publish to agentplexus/tap
+
+**Version:** 0.4.0
+
+### [x] aiassistkit integration
+
+Use aiassistkit for multi-platform plugin generation from canonical specs
 
 **Version:** 0.3.0
 

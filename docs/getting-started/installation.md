@@ -2,10 +2,10 @@
 
 ## Go Install
 
-The easiest way to install Release Agent is using `go install`:
+The easiest way to install Release Agent Team is using `go install`:
 
 ```bash
-go install github.com/grokify/release-agent/cmd/releaseagent@latest
+go install github.com/agentplexus/release-agent-team/cmd/releaseagent@latest
 ```
 
 This installs the `releaseagent` binary to your `$GOPATH/bin` directory.
@@ -15,7 +15,7 @@ This installs the `releaseagent` binary to your `$GOPATH/bin` directory.
 On macOS and Linux, you can install via Homebrew:
 
 ```bash
-brew install grokify/tap/releaseagent
+brew install agentplexus/tap/releaseagent
 ```
 
 ## From Source
@@ -23,8 +23,8 @@ brew install grokify/tap/releaseagent
 Clone the repository and build:
 
 ```bash
-git clone https://github.com/grokify/release-agent.git
-cd release-agent
+git clone https://github.com/agentplexus/release-agent-team.git
+cd release-agent-team
 go build -o releaseagent ./cmd/releaseagent
 ```
 

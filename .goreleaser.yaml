@@ -85,8 +85,8 @@ changelog:
 
 release:
   github:
-    owner: grokify
-    name: release-agent
+    owner: agentplexus
+    name: release-agent-team
   draft: false
   prerelease: auto
   mode: replace
@@ -98,16 +98,16 @@ release:
   footer: |
     ---
 
-    **Full Changelog**: https://github.com/grokify/release-agent/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full Changelog**: https://github.com/agentplexus/release-agent-team/compare/{{ .PreviousTag }}...{{ .Tag }}
 
     ### Installation
 
     ```bash
     # Go install
-    go install github.com/grokify/release-agent/cmd/releaseagent@{{ .Tag }}
+    go install github.com/agentplexus/release-agent-team/cmd/releaseagent@{{ .Tag }}
 
     # Homebrew (macOS/Linux)
-    brew install grokify/tap/releaseagent
+    brew install agentplexus/tap/releaseagent
     ```
 
 brews:
@@ -115,12 +115,12 @@ brews:
     ids:
       - releaseagent
     repository:
-      owner: grokify
+      owner: agentplexus
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     directory: Formula
-    homepage: https://github.com/grokify/release-agent
-    description: Autonomous release preparation agent for multi-language repositories
+    homepage: https://github.com/agentplexus/release-agent-team
+    description: Multi-agent release preparation team for multi-language repositories
     license: Apache-2.0
     dependencies:
       - name: git

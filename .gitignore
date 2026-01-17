@@ -23,3 +23,9 @@ prepush
 .DS_Store
 Thumbs.db
 releaseagent
+
+# Built documentation (use gh-pages branch)
+site/
+
+# Local Claude settings
+.claude/settings.local.json
