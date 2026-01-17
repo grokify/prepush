@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/grokify/release-agent/pkg/checks"
+	"github.com/agentplexus/release-agent-team/pkg/checks"
 )
 
 // TeamConfig maps validation areas to team IDs and names.

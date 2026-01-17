@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/grokify/release-agent/pkg/actions"
-	"github.com/grokify/release-agent/pkg/interactive"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/interactive"
 )
 
 func TestJSONWriter_WriteQuestion(t *testing.T) {

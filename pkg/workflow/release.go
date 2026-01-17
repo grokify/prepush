@@ -5,11 +5,11 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/grokify/release-agent/pkg/actions"
-	"github.com/grokify/release-agent/pkg/checks"
-	"github.com/grokify/release-agent/pkg/config"
-	"github.com/grokify/release-agent/pkg/detect"
-	"github.com/grokify/release-agent/pkg/git"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/checks"
+	"github.com/agentplexus/release-agent-team/pkg/config"
+	"github.com/agentplexus/release-agent-team/pkg/detect"
+	"github.com/agentplexus/release-agent-team/pkg/git"
 )
 
 // ReleaseWorkflow creates a workflow for releasing a new version.

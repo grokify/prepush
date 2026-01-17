@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/grokify/release-agent/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
 )
 
 func TestQuestionTypeString(t *testing.T) {

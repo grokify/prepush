@@ -6,8 +6,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/grokify/release-agent/pkg/actions"
-	"github.com/grokify/release-agent/pkg/interactive"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/interactive"
 )
 
 // MessageType defines the type of JSON message.

@@ -78,7 +78,7 @@ func (t *Team) OverallStatus() Status {
 
 // TeamStatusReport represents the complete validation report.
 type TeamStatusReport struct {
-	Project string // e.g., "github.com/grokify/release-agent"
+	Project string // e.g., "github.com/agentplexus/release-agent-team"
 	Version string // e.g., "v0.3.0"
 	Target  string // e.g., "v0.3.0 (release automation platform)"
 	Phase   string // e.g., "PHASE 1: REVIEW"

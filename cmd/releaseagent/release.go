@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/toon-format/toon-go"
 
-	"github.com/grokify/release-agent/pkg/workflow"
+	"github.com/agentplexus/release-agent-team/pkg/workflow"
 )
 
 // Release command flags

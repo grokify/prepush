@@ -15,10 +15,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/grokify/aiassistkit/agents"
-	"github.com/grokify/aiassistkit/commands"
-	"github.com/grokify/aiassistkit/plugins"
-	"github.com/grokify/aiassistkit/skills"
+	"github.com/agentplexus/aiassistkit/agents"
+	"github.com/agentplexus/aiassistkit/commands"
+	"github.com/agentplexus/aiassistkit/plugins"
+	"github.com/agentplexus/aiassistkit/skills"
 )
 
 func main() {

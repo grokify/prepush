@@ -7,8 +7,8 @@ import (
 
 	"github.com/toon-format/toon-go"
 
-	"github.com/grokify/release-agent/pkg/actions"
-	"github.com/grokify/release-agent/pkg/interactive"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/interactive"
 )
 
 func TestTOONWriter_WriteQuestion(t *testing.T) {

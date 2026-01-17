@@ -2,7 +2,7 @@
 package interactive
 
 import (
-	"github.com/grokify/release-agent/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
 )
 
 // QuestionType defines the type of question.

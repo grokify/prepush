@@ -2,7 +2,7 @@
 package actions
 
 import (
-	"github.com/grokify/release-agent/pkg/config"
+	"github.com/agentplexus/release-agent-team/pkg/config"
 )
 
 // Result represents the result of an action.

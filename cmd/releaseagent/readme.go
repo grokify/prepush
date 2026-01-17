@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/grokify/release-agent/pkg/actions"
-	"github.com/grokify/release-agent/pkg/config"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/config"
 )
 
 // Readme command flags

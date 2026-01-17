@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/grokify/release-agent/pkg/actions"
+	"github.com/agentplexus/release-agent-team/pkg/actions"
 )
 
 // CLIPrompter implements Prompter for terminal interaction.

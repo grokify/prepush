@@ -6,9 +6,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/grokify/release-agent/pkg/checks"
-	"github.com/grokify/release-agent/pkg/config"
-	"github.com/grokify/release-agent/pkg/detect"
+	"github.com/agentplexus/release-agent-team/pkg/checks"
+	"github.com/agentplexus/release-agent-team/pkg/config"
+	"github.com/agentplexus/release-agent-team/pkg/detect"
 )
 
 // Check command flags
