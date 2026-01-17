@@ -1,0 +1,56 @@
+{
+  "$schema": "../multi-agent-spec/schema/orchestration/team.schema.json",
+  "name": "release-agent-team",
+  "version": "1.0.0",
+  "description": "A hierarchical team of agents for automating software release workflows with validation, documentation, security, and execution phases.",
+  "agents": [
+    "pm",
+    "qa",
+    "documentation",
+    "release",
+    "security",
+    "release-coordinator"
+  ],
+  "orchestrator": "release-coordinator",
+  "workflow": {
+    "type": "dag",
+    "steps": [
+      {
+        "name": "pm-validation",
+        "agent": "pm",
+        "outputs": ["version-recommendation", "scope-assessment"]
+      },
+      {
+        "name": "qa-validation",
+        "agent": "qa",
+        "depends_on": ["pm-validation"],
+        "outputs": ["qa-report"]
+      },
+      {
+        "name": "docs-validation",
+        "agent": "documentation",
+        "depends_on": ["pm-validation"],
+        "outputs": ["docs-report"]
+      },
+      {
+        "name": "security-validation",
+        "agent": "security",
+        "depends_on": ["pm-validation"],
+        "outputs": ["security-report"]
+      },
+      {
+        "name": "release-validation",
+        "agent": "release",
+        "depends_on": ["pm-validation", "qa-validation"],
+        "outputs": ["release-readiness"]
+      },
+      {
+        "name": "execute-release",
+        "agent": "release-coordinator",
+        "depends_on": ["qa-validation", "docs-validation", "security-validation", "release-validation"],
+        "outputs": ["release-result"]
+      }
+    ]
+  },
+  "context": "This team automates the complete software release lifecycle including product validation, quality assurance, documentation, security scanning, and release execution."
+}

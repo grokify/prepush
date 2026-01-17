@@ -1,0 +1,56 @@
+{
+  "$schema": "../multi-agent-spec/schema/deployment/deployment.schema.json",
+  "team": "release-agent-team",
+  "targets": [
+    {
+      "name": "local-claude",
+      "platform": "claude-code",
+      "priority": "p1",
+      "output": ".claude/agents",
+      "config": {
+        "agentDir": ".claude/agents",
+        "format": "markdown"
+      }
+    },
+    {
+      "name": "dist-claude",
+      "platform": "claude-code",
+      "priority": "p1",
+      "output": "plugins/claude/agents",
+      "config": {
+        "agentDir": "plugins/claude/agents",
+        "format": "markdown"
+      }
+    },
+    {
+      "name": "local-kiro",
+      "platform": "kiro-cli",
+      "priority": "p1",
+      "output": "plugins/kiro/agents",
+      "config": {
+        "pluginDir": "plugins/kiro",
+        "format": "json"
+      }
+    },
+    {
+      "name": "local-agentkit",
+      "platform": "agentkit-local",
+      "priority": "p2",
+      "output": "plugins/agentkit",
+      "config": {
+        "transport": "stdio"
+      }
+    },
+    {
+      "name": "aws-bedrock",
+      "platform": "aws-agentcore",
+      "priority": "p2",
+      "output": "deploy/cdk",
+      "config": {
+        "region": "us-east-1",
+        "foundationModel": "anthropic.claude-3-5-sonnet-20241022-v2:0",
+        "lambdaRuntime": "python3.11"
+      }
+    }
+  ]
+}
