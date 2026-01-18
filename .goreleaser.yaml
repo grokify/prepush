@@ -121,7 +121,7 @@ brews:
     directory: Formula
     homepage: https://github.com/agentplexus/release-agent-team
     description: Multi-agent release preparation team for multi-language repositories
-    license: Apache-2.0
+    license: MIT
     dependencies:
       - name: git
       - name: gh
@@ -133,14 +133,3 @@ brews:
 announce:
   skip: true
 
-# Signs the checksum file
-signs:
-  - artifacts: checksum
-    args:
-      - "--batch"
-      - "-u"
-      - "{{ .Env.GPG_FINGERPRINT }}"
-      - "--output"
-      - "${signature}"
-      - "--detach-sign"
-      - "${artifact}"
