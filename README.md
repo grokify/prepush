@@ -42,12 +42,12 @@ graph TD
     Security --> Coordinator
     Release --> Coordinator
 
-    style PM fill:#e1f5fe
-    style QA fill:#fff3e0
-    style Docs fill:#e8f5e9
-    style Security fill:#fce4ec
-    style Release fill:#f3e5f5
-    style Coordinator fill:#fff8e1
+    style PM fill:#e1f5fe,color:#01579b
+    style QA fill:#fff3e0,color:#e65100
+    style Docs fill:#e8f5e9,color:#1b5e20
+    style Security fill:#fce4ec,color:#880e4f
+    style Release fill:#f3e5f5,color:#4a148c
+    style Coordinator fill:#fff8e1,color:#f57f17
 ```
 
 | Agent | Role | Checks |
