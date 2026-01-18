@@ -9,6 +9,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"time"
+
+	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
 )
 
 // TeamSpec represents the team.json specification.
@@ -91,10 +94,10 @@ type Phase struct {
 	Steps []StepSpec
 }
 
-// BuildReportFromSpec creates a TeamStatusReport ensuring all steps from the spec are present.
+// BuildReportFromSpec creates a TeamReport ensuring all steps from the spec are present.
 // Results that don't have corresponding validation data are marked as SKIP.
-func BuildReportFromSpec(spec *TeamSpec, results map[string][]Check, project, version string) *TeamStatusReport {
-	var teams []Team
+func BuildReportFromSpec(spec *TeamSpec, results map[string][]multiagentspec.Check, project, version string) *multiagentspec.TeamReport {
+	var teams []multiagentspec.TeamSection
 
 	// Get phases for display
 	phases := spec.GetPhases()
@@ -107,38 +110,46 @@ func BuildReportFromSpec(spec *TeamSpec, results map[string][]Check, project, ve
 	for _, step := range spec.GetValidationSteps() {
 		checks, hasResults := results[step.Name]
 
-		team := Team{
-			ID:   step.Name,
-			Name: step.Agent,
+		team := multiagentspec.TeamSection{
+			ID:      step.Name,
+			Name:    step.Agent,
+			AgentID: step.Agent,
 		}
 
 		if hasResults {
 			team.Checks = checks
 		} else {
 			// No results - mark as pending/skipped
-			team.Checks = []Check{
+			team.Checks = []multiagentspec.Check{
 				{
 					ID:     "validation",
-					Status: StatusSkip,
+					Status: multiagentspec.StatusSkip,
 					Detail: "Not executed",
 				},
 			}
 		}
+		team.Status = team.OverallStatus()
 
 		teams = append(teams, team)
 	}
 
-	return &TeamStatusReport{
-		Project: project,
-		Version: version,
-		Target:  version,
-		Phase:   phaseName,
-		Teams:   teams,
+	report := &multiagentspec.TeamReport{
+		Schema:      "https://raw.githubusercontent.com/agentplexus/multi-agent-spec/main/schema/report/team-report.schema.json",
+		Project:     project,
+		Version:     version,
+		Target:      version,
+		Phase:       phaseName,
+		Teams:       teams,
+		GeneratedAt: time.Now().UTC(),
+		GeneratedBy: "release-agent-team",
 	}
+	report.Status = report.ComputeOverallStatus()
+
+	return report
 }
 
 // StepResultMap is a helper to collect results by step name.
-type StepResultMap map[string][]Check
+type StepResultMap map[string][]multiagentspec.Check
 
 // NewStepResultMap creates a new empty step result map.
 func NewStepResultMap() StepResultMap {
@@ -146,11 +157,11 @@ func NewStepResultMap() StepResultMap {
 }
 
 // Add adds checks to a step's results.
-func (m StepResultMap) Add(stepName string, checks []Check) {
+func (m StepResultMap) Add(stepName string, checks []multiagentspec.Check) {
 	m[stepName] = checks
 }
 
 // AddCheck adds a single check to a step's results.
-func (m StepResultMap) AddCheck(stepName string, check Check) {
+func (m StepResultMap) AddCheck(stepName string, check multiagentspec.Check) {
 	m[stepName] = append(m[stepName], check)
 }

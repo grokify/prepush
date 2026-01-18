@@ -7,7 +7,9 @@ package report
 import (
 	"fmt"
 	"strings"
+	"time"
 
+	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
 	"github.com/agentplexus/release-agent-team/pkg/checks"
 )
 
@@ -29,15 +31,15 @@ func DefaultTeamConfigs() []TeamConfig {
 	}
 }
 
-// FromValidationReport converts a checks.ValidationReport to a TeamStatusReport.
-func FromValidationReport(vr *checks.ValidationReport, project, target, phase string) *TeamStatusReport {
+// FromValidationReport converts a checks.ValidationReport to a multiagentspec.TeamReport.
+func FromValidationReport(vr *checks.ValidationReport, project, target, phase string) *multiagentspec.TeamReport {
 	configs := DefaultTeamConfigs()
 	configMap := make(map[checks.ValidationArea]TeamConfig)
 	for _, c := range configs {
 		configMap[c.Area] = c
 	}
 
-	var teams []Team
+	var teams []multiagentspec.TeamSection
 	for _, ar := range vr.Areas {
 		config, ok := configMap[ar.Area]
 		if !ok {
@@ -47,15 +49,15 @@ func FromValidationReport(vr *checks.ValidationReport, project, target, phase st
 			}
 		}
 
-		var teamChecks []Check
+		var teamChecks []multiagentspec.Check
 		for _, r := range ar.Results {
-			status := StatusGo
+			status := multiagentspec.StatusGo
 			if r.Skipped {
-				status = StatusSkip
+				status = multiagentspec.StatusSkip
 			} else if r.Warning && !r.Passed {
-				status = StatusWarn
+				status = multiagentspec.StatusWarn
 			} else if !r.Passed {
-				status = StatusNoGo
+				status = multiagentspec.StatusNoGo
 			}
 
 			// Extract check ID from name (e.g., "Go: build" -> "build")
@@ -83,40 +85,49 @@ func FromValidationReport(vr *checks.ValidationReport, project, target, phase st
 				detail = r.Reason
 			}
 
-			teamChecks = append(teamChecks, Check{
+			teamChecks = append(teamChecks, multiagentspec.Check{
 				ID:     id,
 				Status: status,
 				Detail: detail,
 			})
 		}
 
-		teams = append(teams, Team{
-			ID:     config.ID,
-			Name:   config.Name,
-			Checks: teamChecks,
-		})
+		team := multiagentspec.TeamSection{
+			ID:      config.ID,
+			Name:    config.Name,
+			AgentID: config.Name,
+			Checks:  teamChecks,
+		}
+		team.Status = team.OverallStatus()
+		teams = append(teams, team)
 	}
 
-	return &TeamStatusReport{
-		Project: project,
-		Version: vr.Version,
-		Target:  target,
-		Phase:   phase,
-		Teams:   teams,
+	report := &multiagentspec.TeamReport{
+		Schema:      "https://raw.githubusercontent.com/agentplexus/multi-agent-spec/main/schema/report/team-report.schema.json",
+		Project:     project,
+		Version:     vr.Version,
+		Target:      target,
+		Phase:       phase,
+		Teams:       teams,
+		GeneratedAt: time.Now().UTC(),
+		GeneratedBy: "release-agent-team",
 	}
+	report.Status = report.ComputeOverallStatus()
+
+	return report
 }
 
-// PMTeam creates a Product Management validation team.
-func PMTeam(version string, roadmapTotal, roadmapCompleted int, hasHighlights, hasBreaking, hasDeprecations bool) Team {
-	checks := []Check{
+// PMTeam creates a Product Management validation team section.
+func PMTeam(version string, roadmapTotal, roadmapCompleted int, hasHighlights, hasBreaking, hasDeprecations bool) multiagentspec.TeamSection {
+	teamChecks := []multiagentspec.Check{
 		{
 			ID:     "version-recommendation",
-			Status: StatusGo,
+			Status: multiagentspec.StatusGo,
 			Detail: version + " appropriate",
 		},
 		{
 			ID:     "release-scope",
-			Status: StatusGo,
+			Status: multiagentspec.StatusGo,
 			Detail: "Phase complete",
 		},
 		{
@@ -131,7 +142,7 @@ func PMTeam(version string, roadmapTotal, roadmapCompleted int, hasHighlights, h
 		},
 		{
 			ID:     "roadmap-alignment",
-			Status: StatusGo,
+			Status: multiagentspec.StatusGo,
 			Detail: formatFraction(roadmapCompleted, roadmapTotal) + " items completed",
 		},
 		{
@@ -141,18 +152,22 @@ func PMTeam(version string, roadmapTotal, roadmapCompleted int, hasHighlights, h
 		},
 	}
 
-	return Team{
-		ID:     "pm-validation",
-		Name:   "pm",
-		Checks: checks,
+	team := multiagentspec.TeamSection{
+		ID:      "pm-validation",
+		Name:    "pm",
+		AgentID: "pm",
+		Checks:  teamChecks,
 	}
+	team.Status = team.OverallStatus()
+
+	return team
 }
 
-func boolToStatus(ok bool) Status {
+func boolToStatus(ok bool) multiagentspec.Status {
 	if ok {
-		return StatusGo
+		return multiagentspec.StatusGo
 	}
-	return StatusWarn
+	return multiagentspec.StatusWarn
 }
 
 func boolToDetail(ok bool, okDetail, notOkDetail string) string {

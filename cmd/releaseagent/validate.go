@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"strings"
 
+	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
 	"github.com/spf13/cobra"
 
 	"github.com/agentplexus/release-agent-team/pkg/checks"
@@ -220,11 +221,11 @@ func printTeamStatusReport(vr *checks.ValidationReport, dir string) {
 		}
 	}
 
-	// Convert to team status report
+	// Convert to team status report (using multi-agent-spec types)
 	teamReport := report.FromValidationReport(vr, project, target, phase)
 
-	// Render the report
-	renderer := report.NewRenderer(os.Stdout)
+	// Render the report using multi-agent-spec renderer
+	renderer := multiagentspec.NewRenderer(os.Stdout)
 	if err := renderer.Render(teamReport); err != nil {
 		fmt.Fprintf(os.Stderr, "Error rendering report: %v\n", err)
 	}
