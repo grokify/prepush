@@ -22,6 +22,49 @@ Release Agent Team validates code quality, generates changelogs, updates documen
 - **Multiple output formats**: Human-readable, JSON, and TOON (Token-Oriented Object Notation)
 - **Claude Code plugin**: Available as a plugin with commands, skills, and agents
 
+## Agent Workflow
+
+Release Agent Team uses a DAG (Directed Acyclic Graph) workflow with 6 specialized agents:
+
+```mermaid
+graph TD
+    PM[PM Agent<br/>version & scope] --> QA[QA Agent<br/>build, test, lint]
+    PM --> Docs[Documentation Agent<br/>README, changelog, release notes]
+    PM --> Security[Security Agent<br/>license, vulns, secrets]
+
+    QA --> Release[Release Agent<br/>git status, CI config]
+    Docs --> Release
+    Security --> Release
+
+    Release --> Coordinator[Release Coordinator<br/>execute release]
+    QA --> Coordinator
+    Docs --> Coordinator
+    Security --> Coordinator
+
+    style PM fill:#e1f5fe
+    style QA fill:#fff3e0
+    style Docs fill:#e8f5e9
+    style Security fill:#fce4ec
+    style Release fill:#f3e5f5
+    style Coordinator fill:#fff8e1
+```
+
+| Agent | Role | Checks |
+|-------|------|--------|
+| **PM** | Product Management | Version recommendation, release scope, changelog quality, breaking changes |
+| **QA** | Quality Assurance | Build, tests, lint, format, error handling, mod tidy |
+| **Documentation** | Documentation | README, PRD, TRD, release notes, CHANGELOG |
+| **Security** | Security | LICENSE, vulnerability scan, dependency audit, secret detection |
+| **Release** | Release Management | Version availability, git status, CI configuration |
+| **Coordinator** | Orchestration | Executes release workflow after all validations pass |
+
+The workflow ensures:
+
+- **PM runs first** - Validates version and scope before other checks
+- **QA, Docs, Security run in parallel** - Independent validation after PM approval
+- **Release runs after all validations** - Confirms release readiness
+- **Coordinator executes last** - Only proceeds when all teams report GO
+
 ## Installation
 
 ```bash
