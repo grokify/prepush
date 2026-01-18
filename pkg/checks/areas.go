@@ -10,6 +10,12 @@ import "fmt"
 type ValidationArea string
 
 const (
+	// AreaPM represents Product Management validation.
+	// Ensures the release scope, versioning, and product decisions are appropriate.
+	// Checks: version-recommendation, release-scope, changelog-quality,
+	// breaking-changes, roadmap-alignment, deprecation-notices.
+	AreaPM ValidationArea = "PM"
+
 	// AreaQA represents Quality Assurance validation.
 	// Ensures the software works as expected and meets quality standards.
 	// Checks: build, tests, lint, format, error handling compliance.

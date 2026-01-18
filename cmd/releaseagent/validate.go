@@ -19,6 +19,7 @@ import (
 // Validate command flags
 var (
 	validateVersion  string
+	validateSkipPM   bool
 	validateSkipQA   bool
 	validateSkipDocs bool
 	validateSkipSec  bool
@@ -32,12 +33,13 @@ var validateCmd = &cobra.Command{
 	Long: `Run comprehensive release validation across all areas of responsibility.
 
 Validation Areas:
+  PM            Version recommendation, release scope, changelog quality, breaking changes
   QA            Build, tests, lint, format, error handling compliance
   Documentation README, PRD, TRD, release notes, CHANGELOG
   Release       Version availability, git status, CI configuration
   Security      LICENSE, vulnerability scan, dependency audit
 
-Assumes Engineering and Product have already signed off.
+The PM agent runs first and produces the version recommendation. Other agents depend on PM.
 
 Examples:
   release-agent-team validate                    # Validate current directory
@@ -51,6 +53,7 @@ Examples:
 
 func init() {
 	validateCmd.Flags().StringVar(&validateVersion, "version", "", "Target release version (e.g., v0.2.0)")
+	validateCmd.Flags().BoolVar(&validateSkipPM, "skip-pm", false, "Skip PM validation")
 	validateCmd.Flags().BoolVar(&validateSkipQA, "skip-qa", false, "Skip QA checks")
 	validateCmd.Flags().BoolVar(&validateSkipDocs, "skip-docs", false, "Skip documentation checks")
 	validateCmd.Flags().BoolVar(&validateSkipSec, "skip-security", false, "Skip security checks")
@@ -98,6 +101,26 @@ func runValidate(cmd *cobra.Command, args []string) {
 	fmt.Println("║                     RELEASE VALIDATION STARTING                        ║")
 	fmt.Println("╚════════════════════════════════════════════════════════════════════════╝")
 	fmt.Println()
+
+	// PM Area (runs first - other agents depend on PM)
+	if !validateSkipPM {
+		fmt.Println("▶ Running PM validation...")
+		pmChecker := &checks.PMChecker{}
+		pmResults := pmChecker.Check(dir, checks.PMOptions{
+			Version: validateVersion,
+			Verbose: cfg.Verbose,
+		})
+		pmStatus := checks.ComputeAreaStatus(pmResults)
+		validationReport.Areas = append(validationReport.Areas, checks.AreaResult{
+			Area:    checks.AreaPM,
+			Status:  pmStatus,
+			Results: pmResults,
+		})
+
+		if pmStatus == checks.StatusNoGo {
+			fmt.Println("  ⚠ PM validation failed - other agents will still run but release is blocked")
+		}
+	}
 
 	// QA Area
 	if !validateSkipQA {

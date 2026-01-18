@@ -21,6 +21,7 @@ type TeamConfig struct {
 // DefaultTeamConfigs returns the default team configurations.
 func DefaultTeamConfigs() []TeamConfig {
 	return []TeamConfig{
+		{Area: checks.AreaPM, ID: "pm-validation", Name: "pm"},
 		{Area: checks.AreaQA, ID: "qa-validation", Name: "qa"},
 		{Area: checks.AreaDocumentation, ID: "docs-validation", Name: "documentation"},
 		{Area: checks.AreaSecurity, ID: "security-validation", Name: "security"},

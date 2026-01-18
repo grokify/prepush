@@ -220,6 +220,52 @@ Verify schangelog, sroadmap, golangci-lint installed
 
 ---
 
+## Multi-Agent Team
+
+### [ ] Agent Validation Result IR
+
+JSON-serializable intermediate representation for agent outputs with inputs/outputs for DAG workflow
+
+**Version:** 0.5.0
+
+### [ ] Team Status Report IR
+
+JSON schema for aggregated team report that Release Coordinator produces
+
+**Version:** 0.5.0
+
+### [ ] PM validation agent checks
+
+Implement version-recommendation, release-scope, changelog-quality, breaking-changes, roadmap-alignment, deprecation-notices
+
+**Version:** 0.5.0
+
+### [ ] Agent output aggregation
+
+Release Coordinator aggregates AgentValidationResult from all agents into TeamStatusReportIR
+
+**Version:** 0.5.0
+
+### [ ] DAG workflow execution
+
+Execute agents in dependency order: PM first, then parallel QA/Docs/Security, then Release
+
+**Version:** 0.5.0
+
+### [x] Multi-agent team spec
+
+team.json with 6 agents and DAG workflow definition
+
+**Version:** 0.4.0
+
+### [x] Deployment spec
+
+deployment.json for multi-platform targets (Claude Code, Kiro CLI, AgentKit, AWS Bedrock)
+
+**Version:** 0.4.0
+
+---
+
 ## Marketplace & Distribution
 
 ### [x] GoReleaser configuration
@@ -379,8 +425,8 @@ The test for v1.0 readiness: Can we add Python, Rust, and Swift checkers without
 | 0.1.0 | 2025-01-04 | ✅ | Initial release with Go/TS validation |
 | 0.2.0 | 2026-01-04 | ✅ | Rename to release-agent |
 | 0.3.0 | 2026-01-12 | ✅ | Release automation platform with workflow, actions, plugins |
-| 0.4.0 | TBD | 📋 | Marketplace publishing (Claude Code, Gemini CLI) |
-| 0.5.0 | TBD | 📋 | API generalization for multi-language |
+| 0.4.0 | 2026-01-17 | ✅ | Multi-agent team architecture, repository migration |
+| 0.5.0 | TBD | 📋 | Multi-agent IR, PM validation, feature parity with v0.3.0 agents |
 | 0.6.0 | TBD | 📋 | Python support |
 | 0.7.0 | TBD | 📋 | Rust support |
 | 0.8.0 | TBD | 📋 | Production feedback incorporation |
