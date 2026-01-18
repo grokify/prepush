@@ -31,15 +31,16 @@ graph TD
     PM[PM Agent<br/>version & scope] --> QA[QA Agent<br/>build, test, lint]
     PM --> Docs[Documentation Agent<br/>README, changelog, release notes]
     PM --> Security[Security Agent<br/>license, vulns, secrets]
+    PM --> Release[Release Agent<br/>git status, CI config]
 
-    QA --> Release[Release Agent<br/>git status, CI config]
+    QA --> Release
     Docs --> Release
     Security --> Release
 
-    Release --> Coordinator[Release Coordinator<br/>execute release]
-    QA --> Coordinator
+    QA --> Coordinator[Release Coordinator<br/>execute release]
     Docs --> Coordinator
     Security --> Coordinator
+    Release --> Coordinator
 
     style PM fill:#e1f5fe
     style QA fill:#fff3e0
