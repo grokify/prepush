@@ -104,7 +104,7 @@ As a developer, I want a single command to handle the entire release so that I d
 
 As a Claude Code user, I want to invoke release-agent via `/release-agent` so that I can use it within my AI workflow.
 
-**Status:** Complete
+**Status:** Complete (Custom Plugin via GitHub)
 
 **Acceptance Criteria:**
 
@@ -112,6 +112,36 @@ As a Claude Code user, I want to invoke release-agent via `/release-agent` so th
 - Subagent can ask user questions during execution
 - Proper permission handling for file edits
 - Clear summary of actions taken
+- Install via GitHub: `claude plugin add github:agentplexus/release-agent-team/plugins/claude`
+
+**Note:** Currently available as a custom plugin installed from GitHub. Official Claude Marketplace publication is planned for future release.
+
+### US-7: Multi-Agent Team Architecture
+
+As a developer, I want release validation performed by specialized agents (PM, QA, Docs, Security, Release) so that each concern is handled by a dedicated expert.
+
+**Status:** Complete
+
+**Acceptance Criteria:**
+
+- Agents defined using multi-agent-spec format (`team.json`, `deployment.json`)
+- DAG workflow with PM running first, parallel validation agents, then Release
+- Reports display teams in DAG order (topological sort with alphabetical tie-breaking)
+- Canonical IR types from `github.com/agentplexus/multi-agent-spec/sdk/go`
+- JSON schema conformance for interoperability
+
+### US-8: Multi-Platform Agent Deployment
+
+As a platform operator, I want agents defined in a portable specification so that I can deploy them to multiple platforms (Claude Code, Kiro CLI, AWS Bedrock).
+
+**Status:** Complete
+
+**Acceptance Criteria:**
+
+- Canonical agent definitions in multi-agent-spec format
+- Platform-specific plugins generated from canonical specs
+- Support for Claude Code, Kiro CLI, and Gemini CLI
+- Deployment spec (`deployment.json`) defines target platforms
 
 ## Features
 
@@ -167,9 +197,24 @@ As a Claude Code user, I want to invoke release-agent via `/release-agent` so th
 | Claude Code plugin structure | P0 | Complete |
 | AGENT.md for subagent | P0 | Complete |
 | SessionStart dependency check hook | P1 | Complete |
-| Publish to Claude Marketplace | P0 | Complete |
+| Custom plugin via GitHub | P0 | Complete |
+| Publish to Claude Marketplace | P2 | Planned |
 
-### Phase 5: Distribution
+### Phase 5: Multi-Agent Team
+
+| Feature | Priority | Status |
+|---------|----------|--------|
+| Multi-agent team spec (`team.json`) | P0 | Complete |
+| Deployment spec (`deployment.json`) | P0 | Complete |
+| 6 specialized agents (PM, QA, Docs, Security, Release, Coordinator) | P0 | Complete |
+| DAG workflow orchestration | P0 | Complete |
+| Multi-agent-spec SDK integration | P0 | Complete |
+| DAG-aware report ordering | P1 | Complete |
+| Canonical IR types (TeamReport, Check, Status) | P1 | Complete |
+| Kiro CLI plugin | P1 | Complete |
+| Gemini CLI extension docs | P2 | Complete |
+
+### Phase 6: Distribution
 
 | Feature | Priority | Status |
 |---------|----------|--------|
@@ -212,6 +257,8 @@ As a Claude Code user, I want to invoke release-agent via `/release-agent` so th
 | gocoverbadge | Coverage badges | No (optional) |
 | gh CLI | GitHub CI status | Yes (for CI waiting) |
 | govulncheck | Vulnerability scanning | No (optional) |
+| multi-agent-spec SDK | Canonical IR types for reports | Yes (v0.1.2+) |
+| aiassistkit | Multi-platform plugin generation | No (for plugin development) |
 
 ## Appendix
 

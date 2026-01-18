@@ -1,4 +1,4 @@
-# Release Agent Roadmap
+# Release Agent Team Roadmap
 
 This roadmap documents planned and completed features for this project.
 
@@ -18,11 +18,35 @@ Implement subcommand structure with cobra
 
 **Version:** 0.3.0
 
+### [x] DAG-aware report sorting
+
+Teams display in topological order with alphabetical tie-breaking
+
+**Version:** 0.5.0
+
+### [x] Deployment spec
+
+deployment.json for multi-platform targets (Claude Code, Kiro CLI, AgentKit, AWS Bedrock)
+
+**Version:** 0.4.0
+
 ### [x] Git wrapper package
 
 pkg/git with Git struct for git operations
 
 **Version:** 0.3.0
+
+### [x] Multi-agent team spec
+
+team.json with 6 agents and DAG workflow definition
+
+**Version:** 0.4.0
+
+### [x] Multi-agent-spec IR types
+
+Use canonical TeamReport, TeamSection, Check, Status types from multi-agent-spec SDK
+
+**Version:** 0.5.0
 
 ### [x] Multi-language detection
 
@@ -36,11 +60,11 @@ Incorporate feedback from real-world usage before v1.0
 
 **Version:** 0.8.0
 
-### [x] Rename repository to release-agent-team
+### [x] Rename repository to release-agent
 
 Update module path to github.com/agentplexus/release-agent-team
 
-**Version:** 0.4.0
+**Version:** 0.2.0
 
 ### [x] Restructure to cmd/releaseagent
 
@@ -102,7 +126,7 @@ Version format, git status, CI configuration validation
 
 **Version:** 0.3.0
 
-### [x] `release-agent-team version` subcommand
+### [x] `releaseagent version` subcommand
 
 Show version information
 
@@ -166,7 +190,7 @@ GitLab CI status and release creation
 
 ### [x] Claude Code plugin structure
 
-plugins/claude/ directory with commands, skills, agents generated from canonical specs
+plugin/ directory with commands, skills, agents, hooks
 
 **Version:** 0.3.0
 
@@ -220,59 +244,7 @@ Verify schangelog, sroadmap, golangci-lint installed
 
 ---
 
-## Multi-Agent Team
-
-### [ ] Agent Validation Result IR
-
-JSON-serializable intermediate representation for agent outputs with inputs/outputs for DAG workflow
-
-**Version:** 0.5.0
-
-### [ ] Team Status Report IR
-
-JSON schema for aggregated team report that Release Coordinator produces
-
-**Version:** 0.5.0
-
-### [ ] PM validation agent checks
-
-Implement version-recommendation, release-scope, changelog-quality, breaking-changes, roadmap-alignment, deprecation-notices
-
-**Version:** 0.5.0
-
-### [ ] Agent output aggregation
-
-Release Coordinator aggregates AgentValidationResult from all agents into TeamStatusReportIR
-
-**Version:** 0.5.0
-
-### [ ] DAG workflow execution
-
-Execute agents in dependency order: PM first, then parallel QA/Docs/Security, then Release
-
-**Version:** 0.5.0
-
-### [x] Multi-agent team spec
-
-team.json with 6 agents and DAG workflow definition
-
-**Version:** 0.4.0
-
-### [x] Deployment spec
-
-deployment.json for multi-platform targets (Claude Code, Kiro CLI, AgentKit, AWS Bedrock)
-
-**Version:** 0.4.0
-
----
-
 ## Marketplace & Distribution
-
-### [x] GoReleaser configuration
-
-Multi-platform builds with GoReleaser
-
-**Version:** 0.3.0
 
 ### [x] Claude Code plugin via GitHub
 
@@ -280,27 +252,15 @@ Install directly from GitHub: `claude plugin add github:agentplexus/release-agen
 
 **Version:** 0.4.0
 
-### [ ] Publish to Claude Code Official Marketplace
+### [x] GoReleaser configuration
 
-Submit PR to anthropics/claude-plugins-official for official listing
-
-**Version:** 0.4.0
-
-### [x] Gemini CLI extension via GitHub
-
-Install directly from GitHub for Gemini CLI
+Multi-platform builds with GoReleaser
 
 **Version:** 0.3.0
 
-### [ ] Publish to Gemini CLI Extensions Marketplace
+### [x] Gemini CLI plugin structure
 
-Submit and publish extension to Gemini CLI marketplace
-
-**Version:** 0.4.0
-
-### [x] Kiro CLI agent support
-
-Generate Kiro CLI agent configs via aiassistkit
+TOML-based plugin for Gemini CLI Extensions
 
 **Version:** 0.3.0
 
@@ -308,13 +268,21 @@ Generate Kiro CLI agent configs via aiassistkit
 
 Publish to agentplexus/tap
 
+**Version:** 0.3.0
+
+### [x] Kiro CLI plugin
+
+JSON-based agent configurations and steering files for Kiro CLI
+
 **Version:** 0.4.0
 
-### [x] aiassistkit integration
+### [ ] Publish to Claude Code Plugin Marketplace
 
-Use aiassistkit for multi-platform plugin generation from canonical specs
+Submit and publish plugin to Claude Code marketplace
 
-**Version:** 0.3.0
+### [ ] Publish to Gemini CLI Extensions Marketplace
+
+Submit and publish extension to Gemini CLI marketplace
 
 ---
 
@@ -422,11 +390,11 @@ The test for v1.0 readiness: Can we add Python, Rust, and Swift checkers without
 
 | Version | Date | Status | Summary |
 |---------|------|--------|--------|
-| 0.1.0 | 2025-01-04 | ✅ | Initial release with Go/TS validation |
+| 0.1.0 | 2026-01-04 | ✅ | Initial release with Go/TS validation |
 | 0.2.0 | 2026-01-04 | ✅ | Rename to release-agent |
 | 0.3.0 | 2026-01-12 | ✅ | Release automation platform with workflow, actions, plugins |
-| 0.4.0 | 2026-01-17 | ✅ | Multi-agent team architecture, repository migration |
-| 0.5.0 | TBD | 📋 | Multi-agent IR, PM validation, feature parity with v0.3.0 agents |
+| 0.4.0 | 2026-01-17 | ✅ | Multi-agent team architecture with 6 agents and DAG workflow |
+| 0.5.0 | 2026-01-17 | ✅ | Multi-agent-spec integration with DAG-aware report ordering |
 | 0.6.0 | TBD | 📋 | Python support |
 | 0.7.0 | TBD | 📋 | Rust support |
 | 0.8.0 | TBD | 📋 | Production feedback incorporation |

@@ -41,7 +41,7 @@ Release Agent Team provides a modular architecture for release automation with v
 ## Module Structure
 
 ```
-github.com/grokify/release-agent/
+github.com/agentplexus/release-agent-team/
 ├── cmd/
 │   └── releaseagent/           # CLI entry point
 │       ├── main.go             # Main entry
@@ -720,6 +720,143 @@ Lifecycle hooks for Claude Code integration:
 - **SessionStart**: Check dependencies are installed
 - **PreToolUse**: Validate release commands before execution
 
+## Multi-Agent Team Architecture
+
+Release Agent Team uses a multi-agent architecture defined in [multi-agent-spec](https://github.com/agentplexus/multi-agent-spec) format.
+
+### Agent Definitions
+
+Six specialized agents handle different validation domains:
+
+| Agent | ID | Domain | Checks |
+|-------|---|--------|--------|
+| PM Agent | `pm-agent` | Version & Scope | Version format, scope validation |
+| QA Agent | `qa-agent` | Quality Assurance | Build, test, lint, format, error handling |
+| Documentation Agent | `docs-agent` | Documentation | README, PRD, TRD, CHANGELOG, release notes |
+| Security Agent | `security-agent` | Security & Compliance | LICENSE, govulncheck, dependency audit, secrets |
+| Release Agent | `release-agent` | Release Readiness | Git status, tag availability, CI config |
+| Release Coordinator | `release-coordinator` | Orchestration | Coordinates all agents, executes release |
+
+### DAG Workflow
+
+Agents execute in a directed acyclic graph (DAG) workflow:
+
+```
+                    ┌─────────────┐
+                    │  PM Agent   │
+                    │  (Level 0)  │
+                    └──────┬──────┘
+           ┌───────────────┼───────────────┐
+           │               │               │
+           ▼               ▼               ▼
+    ┌──────────┐    ┌──────────┐    ┌───────────┐
+    │ QA Agent │    │Doc Agent │    │ Security  │
+    │ (Level 1)│    │(Level 1) │    │  Agent    │
+    └────┬─────┘    └────┬─────┘    └─────┬─────┘
+         │               │                │
+         └───────────────┼────────────────┘
+                         │
+                         ▼
+                  ┌──────────────┐
+                  │Release Agent │
+                  │  (Level 2)   │
+                  └──────┬───────┘
+                         │
+                         ▼
+                  ┌──────────────┐
+                  │ Coordinator  │
+                  │  (Level 3)   │
+                  └──────────────┘
+```
+
+### Multi-Agent-Spec Integration
+
+The report system uses canonical types from `github.com/agentplexus/multi-agent-spec/sdk/go`:
+
+```go
+import multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+
+// TeamReport represents validation results from all agents
+type TeamReport = multiagentspec.TeamReport
+
+// TeamSection represents a single agent's results
+type TeamSection = multiagentspec.TeamSection
+
+// Check represents a single validation check
+type Check = multiagentspec.Check
+
+// Status represents Go/No-Go status
+type Status = multiagentspec.Status
+```
+
+### DAG-Aware Sorting
+
+Reports display agents in topological order using Kahn's algorithm:
+
+1. Agents with no dependencies (PM) are processed first
+2. Once an agent's dependencies are satisfied, it becomes ready
+3. Ready agents at the same level are sorted alphabetically for deterministic output
+4. The `DependsOn` field tracks upstream dependencies
+
+```go
+// TeamSection includes DAG dependencies
+type TeamSection struct {
+    ID        string   `json:"id"`
+    Name      string   `json:"name"`
+    DependsOn []string `json:"depends_on,omitempty"`  // Upstream agent IDs
+    Checks    []Check  `json:"checks"`
+    Status    Status   `json:"status"`
+}
+
+// SortByDAG sorts teams in topological order
+func (r *TeamReport) SortByDAG()
+```
+
+### Team Configuration
+
+```go
+// pkg/report/convert.go
+
+type TeamConfig struct {
+    Area      checks.ValidationArea
+    ID        string
+    Name      string
+    DependsOn []string  // Upstream team IDs for DAG ordering
+}
+
+func DefaultTeamConfigs() []TeamConfig {
+    return []TeamConfig{
+        {Area: checks.AreaPM, ID: "pm-validation", Name: "pm", DependsOn: nil},
+        {Area: checks.AreaQA, ID: "qa-validation", Name: "qa", DependsOn: []string{"pm-validation"}},
+        {Area: checks.AreaDocumentation, ID: "docs-validation", Name: "documentation", DependsOn: []string{"pm-validation"}},
+        {Area: checks.AreaSecurity, ID: "security-validation", Name: "security", DependsOn: []string{"pm-validation"}},
+        {Area: checks.AreaRelease, ID: "release-validation", Name: "release", DependsOn: []string{"pm-validation", "qa-validation", "docs-validation", "security-validation"}},
+    }
+}
+```
+
+### Specification Files
+
+Agent definitions are stored in `team.json` and `deployment.json`:
+
+```
+plugins/spec/
+├── team.json           # Agent definitions and DAG workflow
+└── deployment.json     # Multi-platform deployment targets
+```
+
+**team.json** defines:
+
+- Agent metadata (ID, name, description, model)
+- Tools each agent can use
+- Workflow structure with dependencies
+
+**deployment.json** defines:
+
+- Target platforms (Claude Code, Kiro CLI, Gemini CLI)
+- Platform-specific configurations
+- Generated plugin locations
+
 ## Dependencies
 
 ### Go Packages
@@ -729,6 +866,7 @@ Lifecycle hooks for Claude Code integration:
 | `github.com/spf13/cobra` | CLI framework |
 | `gopkg.in/yaml.v3` | YAML configuration |
 | `github.com/toon-format/toon-go` | TOON output format |
+| `github.com/agentplexus/multi-agent-spec/sdk/go` | Canonical IR types for reports |
 
 ### External Tools
 

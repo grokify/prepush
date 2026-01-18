@@ -14,10 +14,11 @@
     {"id": "core", "name": "Core", "priority": 1},
     {"id": "actions", "name": "Actions", "priority": 2},
     {"id": "workflow", "name": "Workflow", "priority": 3},
-    {"id": "claude", "name": "Claude Code Integration", "priority": 4},
-    {"id": "marketplace", "name": "Marketplace & Distribution", "priority": 5},
-    {"id": "languages", "name": "Language Support", "priority": 6},
-    {"id": "stability", "name": "API Stability", "priority": 7}
+    {"id": "multi-agent", "name": "Multi-Agent Team", "priority": 4},
+    {"id": "claude", "name": "Claude Code Integration", "priority": 5},
+    {"id": "marketplace", "name": "Marketplace & Distribution", "priority": 6},
+    {"id": "languages", "name": "Language Support", "priority": 7},
+    {"id": "stability", "name": "API Stability", "priority": 8}
   ],
 
   "phases": [
@@ -44,17 +45,17 @@
     },
     {
       "id": "v0.4",
-      "name": "v0.4.0 - Marketplace Publishing",
-      "status": "planned",
+      "name": "v0.4.0 - Multi-Agent Team Architecture",
+      "status": "completed",
       "order": 4,
-      "description": "Publish to Claude Code and Gemini CLI marketplaces"
+      "description": "Multi-agent team with 6 specialized agents and DAG workflow orchestration"
     },
     {
       "id": "v0.5",
-      "name": "v0.5.0 - API Generalization",
-      "status": "planned",
+      "name": "v0.5.0 - Multi-Agent-Spec Integration",
+      "status": "completed",
       "order": 5,
-      "description": "Generalize Options and Config for multi-language extensibility"
+      "description": "Canonical IR types from multi-agent-spec SDK with DAG-aware report ordering"
     },
     {
       "id": "v0.6",
@@ -491,10 +492,32 @@
       "priority": "medium"
     },
     {
-      "id": "claude-marketplace",
-      "title": "Publish to Claude Code Plugin Marketplace",
-      "description": "Submit and publish plugin to Claude Code marketplace",
-      "status": "planned",
+      "id": "multi-agent-team-spec",
+      "title": "Multi-agent team spec",
+      "description": "team.json with 6 agents and DAG workflow definition",
+      "status": "completed",
+      "version": "0.4.0",
+      "phase": "v0.4",
+      "area": "core",
+      "type": "Added",
+      "priority": "high"
+    },
+    {
+      "id": "deployment-spec",
+      "title": "Deployment spec",
+      "description": "deployment.json for multi-platform targets (Claude Code, Kiro CLI, AgentKit, AWS Bedrock)",
+      "status": "completed",
+      "version": "0.4.0",
+      "phase": "v0.4",
+      "area": "core",
+      "type": "Added",
+      "priority": "high"
+    },
+    {
+      "id": "claude-plugin-github",
+      "title": "Claude Code plugin via GitHub",
+      "description": "Install directly from GitHub: `claude plugin add github:agentplexus/release-agent-team/plugins/claude`",
+      "status": "completed",
       "version": "0.4.0",
       "phase": "v0.4",
       "area": "marketplace",
@@ -502,15 +525,57 @@
       "priority": "high"
     },
     {
-      "id": "gemini-marketplace",
-      "title": "Publish to Gemini CLI Extensions Marketplace",
-      "description": "Submit and publish extension to Gemini CLI marketplace",
-      "status": "planned",
+      "id": "kiro-cli-plugin",
+      "title": "Kiro CLI plugin",
+      "description": "JSON-based agent configurations and steering files for Kiro CLI",
+      "status": "completed",
       "version": "0.4.0",
       "phase": "v0.4",
       "area": "marketplace",
       "type": "Added",
+      "priority": "medium"
+    },
+    {
+      "id": "multi-agent-spec-ir",
+      "title": "Multi-agent-spec IR types",
+      "description": "Use canonical TeamReport, TeamSection, Check, Status types from multi-agent-spec SDK",
+      "status": "completed",
+      "version": "0.5.0",
+      "phase": "v0.5",
+      "area": "core",
+      "type": "Changed",
       "priority": "high"
+    },
+    {
+      "id": "dag-aware-sorting",
+      "title": "DAG-aware report sorting",
+      "description": "Teams display in topological order with alphabetical tie-breaking",
+      "status": "completed",
+      "version": "0.5.0",
+      "phase": "v0.5",
+      "area": "core",
+      "type": "Added",
+      "priority": "high"
+    },
+    {
+      "id": "claude-marketplace",
+      "title": "Publish to Claude Code Plugin Marketplace",
+      "description": "Submit and publish plugin to Claude Code marketplace",
+      "status": "planned",
+      "phase": "future",
+      "area": "marketplace",
+      "type": "Added",
+      "priority": "medium"
+    },
+    {
+      "id": "gemini-marketplace",
+      "title": "Publish to Gemini CLI Extensions Marketplace",
+      "description": "Submit and publish extension to Gemini CLI marketplace",
+      "status": "planned",
+      "phase": "future",
+      "area": "marketplace",
+      "type": "Added",
+      "priority": "medium"
     },
     {
       "id": "generalize-options",
@@ -685,11 +750,11 @@
   ],
 
   "version_history": [
-    {"version": "0.1.0", "date": "2025-01-04", "status": "completed", "summary": "Initial release with Go/TS validation"},
+    {"version": "0.1.0", "date": "2026-01-04", "status": "completed", "summary": "Initial release with Go/TS validation"},
     {"version": "0.2.0", "date": "2026-01-04", "status": "completed", "summary": "Rename to release-agent"},
     {"version": "0.3.0", "date": "2026-01-12", "status": "completed", "summary": "Release automation platform with workflow, actions, plugins"},
-    {"version": "0.4.0", "date": null, "status": "planned", "summary": "Marketplace publishing (Claude Code, Gemini CLI)"},
-    {"version": "0.5.0", "date": null, "status": "planned", "summary": "API generalization for multi-language"},
+    {"version": "0.4.0", "date": "2026-01-17", "status": "completed", "summary": "Multi-agent team architecture with 6 agents and DAG workflow"},
+    {"version": "0.5.0", "date": "2026-01-17", "status": "completed", "summary": "Multi-agent-spec integration with DAG-aware report ordering"},
     {"version": "0.6.0", "date": null, "status": "planned", "summary": "Python support"},
     {"version": "0.7.0", "date": null, "status": "planned", "summary": "Rust support"},
     {"version": "0.8.0", "date": null, "status": "planned", "summary": "Production feedback incorporation"},
