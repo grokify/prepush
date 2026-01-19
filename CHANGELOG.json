@@ -9,10 +9,18 @@
       "version": "v0.5.1",
       "date": "2026-01-18",
       "highlights": [
-        { "description": "Dependency rename from aiassistkit to assistantkit" }
+        { "description": "Dependency `github.com/agentplexus/aiassistkit` has been renamed to `github.com/agentplexus/assistantkit`" }
       ],
       "dependencies": [
-        { "description": "Renamed dependency `github.com/agentplexus/aiassistkit` v0.4.0 to `github.com/agentplexus/assistantkit` v0.5.0" }
+        { "description": "Renamed dependency `github.com/agentplexus/aiassistkit` v0.4.0 to `github.com/agentplexus/assistantkit` v0.5.0", "commit": "4c761d0" },
+        { "description": "Updated go.mod dependencies", "commit": "47c9cff" },
+        { "description": "Bump `actions/setup-go` from 5 to 6", "commit": "6c4f4ca" },
+        { "description": "Bump `actions/checkout` from 4 to 6", "commit": "f2a30c6" },
+        { "description": "Bump `actions/setup-python` from 5 to 6", "commit": "7ea71db" }
+      ],
+      "documentation": [
+        { "description": "Added icons to Features section in README", "commit": "ee90d37" },
+        { "description": "Updated Homebrew install instructions to use `brew tap` for search support", "commit": "67e7ade" }
       ]
     },
     {
