@@ -1753,23 +1753,23 @@
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <h2 id="go-install">Go Install<a class="headerlink" href="#go-install" title="Permanent link">&para;</a></h2>
 <p>The easiest way to install Release Agent Team is using <code>go install</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>go<span class="w"> </span>install<span class="w"> </span>github.com/agentplexus/agent-team-release/cmd/releaseagent@latest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>go<span class="w"> </span>install<span class="w"> </span>github.com/agentplexus/agent-team-release/cmd/atrelease@latest
 </code></pre></div>
-<p>This installs the <code>agent-team-release</code> binary to your <code>$GOPATH/bin</code> directory.</p>
+<p>This installs the <code>atrelease</code> binary to your <code>$GOPATH/bin</code> directory.</p>
 <h2 id="homebrew">Homebrew<a class="headerlink" href="#homebrew" title="Permanent link">&para;</a></h2>
 <p>On macOS and Linux, you can install via Homebrew:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew<span class="w"> </span>tap<span class="w"> </span>agentplexus/tap
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>install<span class="w"> </span>agent-team-release
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>install<span class="w"> </span>atrelease
 </code></pre></div>
 <h2 id="from-source">From Source<a class="headerlink" href="#from-source" title="Permanent link">&para;</a></h2>
 <p>Clone the repository and build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/agentplexus/agent-team-release.git
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>agent-team-release
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>agent-team-release<span class="w"> </span>./cmd/releaseagent
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>atrelease<span class="w"> </span>./cmd/atrelease
 </code></pre></div>
 <h2 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h2>
 <p>Check that Release Agent is installed correctly:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>agent-team-release<span class="w"> </span>version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>atrelease<span class="w"> </span>version
 </code></pre></div>
 <h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
 <h3 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h3>

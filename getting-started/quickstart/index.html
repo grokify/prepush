@@ -1600,7 +1600,7 @@
 <p>This guide walks you through your first use of Release Agent.</p>
 <h2 id="your-first-check">Your First Check<a class="headerlink" href="#your-first-check" title="Permanent link">&para;</a></h2>
 <p>Navigate to a Go, TypeScript, or JavaScript project and run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>agent-team-release<span class="w"> </span>check
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>atrelease<span class="w"> </span>check
 </code></pre></div>
 <p>Release Agent automatically detects the language(s) in your repository and runs appropriate checks.</p>
 <h3 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Permanent link">&para;</a></h3>
@@ -1628,7 +1628,7 @@
 </code></pre></div>
 <h2 id="comprehensive-validation">Comprehensive Validation<a class="headerlink" href="#comprehensive-validation" title="Permanent link">&para;</a></h2>
 <p>For a full release readiness assessment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>agent-team-release<span class="w"> </span>validate<span class="w"> </span>--version<span class="o">=</span>v1.0.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>atrelease<span class="w"> </span>validate<span class="w"> </span>--version<span class="o">=</span>v1.0.0
 </code></pre></div>
 <p>This runs checks across all four validation areas:</p>
 <ul>
@@ -1639,7 +1639,7 @@
 </ul>
 <h3 id="team-status-report">Team Status Report<a class="headerlink" href="#team-status-report" title="Permanent link">&para;</a></h3>
 <p>For a structured team report format:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>agent-team-release<span class="w"> </span>validate<span class="w"> </span>--format<span class="w"> </span>team<span class="w"> </span>--version<span class="o">=</span>v1.0.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>atrelease<span class="w"> </span>validate<span class="w"> </span>--format<span class="w"> </span>team<span class="w"> </span>--version<span class="o">=</span>v1.0.0
 </code></pre></div>
 <p>Output:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>╔════════════════════════════════════════════════════════════════════════════╗
@@ -1659,10 +1659,10 @@
 <h2 id="execute-a-release">Execute a Release<a class="headerlink" href="#execute-a-release" title="Permanent link">&para;</a></h2>
 <p>When you're ready to release:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Preview what will happen</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--dry-run
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--dry-run
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Execute the release</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0
 </code></pre></div>
 <p>The release workflow:</p>
 <ol>

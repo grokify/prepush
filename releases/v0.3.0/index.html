@@ -1907,14 +1907,14 @@
 </ul>
 <h3 id="release-workflow-engine">Release Workflow Engine<a class="headerlink" href="#release-workflow-engine" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong><code>agent-team-release release &lt;version&gt;</code></strong>: Execute complete 9-step release workflow</li>
+<li><strong><code>atrelease release &lt;version&gt;</code></strong>: Execute complete 9-step release workflow</li>
 <li><strong>Steps</strong>: Validate version → Check working directory → Run checks → Generate changelog → Update roadmap → Create commit → Push → Wait for CI → Create tag</li>
 <li><strong>CI verification</strong>: Waits for GitHub Actions to pass before tagging (via <code>gh</code> CLI)</li>
 <li><strong>Dry-run support</strong>: Preview what would happen without making changes</li>
 </ul>
 <h3 id="comprehensive-validation">Comprehensive Validation<a class="headerlink" href="#comprehensive-validation" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong><code>agent-team-release validate</code></strong>: NASA-style Go/No-Go validation across 4 areas</li>
+<li><strong><code>atrelease validate</code></strong>: NASA-style Go/No-Go validation across 4 areas</li>
 <li><strong>QA Area</strong>: Build, test, lint, format, error handling</li>
 <li><strong>Documentation Area</strong>: README, PRD, TRD, release notes, changelog</li>
 <li><strong>Release Area</strong>: Version format, git status, CI configuration</li>
@@ -1984,7 +1984,7 @@
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>prepush
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># New</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>agent-team-release<span class="w"> </span>check
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>atrelease<span class="w"> </span>check
 </code></pre></div></p>
 </li>
 <li>

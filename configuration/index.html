@@ -1928,7 +1928,7 @@
 <h2 id="command-line-override">Command-Line Override<a class="headerlink" href="#command-line-override" title="Permanent link">&para;</a></h2>
 <p>Command-line flags override configuration file settings:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Config says test: true, but skip tests for this run</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>agent-team-release<span class="w"> </span>check<span class="w"> </span>--no-test
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>atrelease<span class="w"> </span>check<span class="w"> </span>--no-test
 </code></pre></div>
 <h2 id="legacy-configuration">Legacy Configuration<a class="headerlink" href="#legacy-configuration" title="Permanent link">&para;</a></h2>
 <p>For backwards compatibility, <code>.prepush.yaml</code> is also supported but deprecated. Rename to <code>.releaseagent.yaml</code>:</p>
@@ -1936,7 +1936,7 @@
 </code></pre></div>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
 <p>To validate your configuration:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>agent-team-release<span class="w"> </span>check<span class="w"> </span>--verbose
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>atrelease<span class="w"> </span>check<span class="w"> </span>--verbose
 </code></pre></div>
 <p>The verbose output shows which configuration options are being used.</p>
 

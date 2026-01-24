@@ -1797,7 +1797,7 @@
 <h1 id="release">release<a class="headerlink" href="#release" title="Permanent link">&para;</a></h1>
 <p>Execute the full release workflow.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>&lt;version&gt;<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>atrelease<span class="w"> </span>release<span class="w"> </span>&lt;version&gt;<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
 </code></pre></div>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
 <p>The <code>release</code> command orchestrates the complete release workflow, from validation through tagging. It ensures all checks pass, generates documentation, waits for CI, and only tags after everything succeeds.</p>
@@ -1913,19 +1913,19 @@
 </table>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Execute full release</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Preview without making changes</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--dry-run
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--dry-run
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Skip CI waiting (dangerous - tag before CI passes)</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--skip-ci
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--skip-ci
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Verbose output</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--verbose
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--verbose
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># Interactive mode (for Claude Code)</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--interactive
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--interactive
 </code></pre></div>
 <h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
 <h3 id="successful-release">Successful Release<a class="headerlink" href="#successful-release" title="Permanent link">&para;</a></h3>
@@ -1990,7 +1990,7 @@
 <li>Get approval before making changes</li>
 </ul>
 <p>This is designed for use with Claude Code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--interactive<span class="w"> </span>--json
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0<span class="w"> </span>--interactive<span class="w"> </span>--json
 </code></pre></div>
 <h2 id="exit-codes">Exit Codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
 <table>

@@ -1981,7 +1981,7 @@
 <p>Create <code>.git/hooks/pre-push</code> manually:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>.git/hooks/pre-push<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="s">#!/bin/bash</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="s">exec agent-team-release check</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="s">exec atrelease check</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s">EOF</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-push
@@ -1990,7 +1990,7 @@
 <p>Create a symlink to the Release Agent binary:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ln<span class="w"> </span>-sf<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>agent-team-release<span class="k">)</span><span class="w"> </span>.git/hooks/pre-push
 </code></pre></div>
-<p>Note: This runs <code>agent-team-release</code> with no arguments, which defaults to <code>check</code>.</p>
+<p>Note: This runs <code>atrelease</code> with no arguments, which defaults to <code>check</code>.</p>
 <h3 id="option-3-shared-hooks-directory">Option 3: Shared Hooks Directory<a class="headerlink" href="#option-3-shared-hooks-directory" title="Permanent link">&para;</a></h3>
 <p>For team-wide hooks, use a shared hooks directory:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create shared hooks directory</span>
@@ -1999,7 +1999,7 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Create the hook</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>.githooks/pre-push<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="s">#!/bin/bash</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="s">exec agent-team-release check</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="s">exec atrelease check</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="s">EOF</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.githooks/pre-push
@@ -2038,16 +2038,16 @@
 <h3 id="skip-certain-checks">Skip Certain Checks<a class="headerlink" href="#skip-certain-checks" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Skip tests for faster push (run in CI)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">exec</span><span class="w"> </span>agent-team-release<span class="w"> </span>check<span class="w"> </span>--no-test
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">exec</span><span class="w"> </span>atrelease<span class="w"> </span>check<span class="w"> </span>--no-test
 </code></pre></div>
 <h3 id="verbose-output">Verbose Output<a class="headerlink" href="#verbose-output" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/bin/bash</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">exec</span><span class="w"> </span>agent-team-release<span class="w"> </span>check<span class="w"> </span>--verbose
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">exec</span><span class="w"> </span>atrelease<span class="w"> </span>check<span class="w"> </span>--verbose
 </code></pre></div>
 <h3 id="different-config-for-hooks">Different Config for Hooks<a class="headerlink" href="#different-config-for-hooks" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Use hook-specific config</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">RELEASEAGENT_CONFIG</span><span class="o">=</span>.releaseagent.hooks.yaml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>agent-team-release<span class="w"> </span>check
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">RELEASEAGENT_CONFIG</span><span class="o">=</span>.releaseagent.hooks.yaml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>atrelease<span class="w"> </span>check
 </code></pre></div>
 <h2 id="ci-integration">CI Integration<a class="headerlink" href="#ci-integration" title="Permanent link">&para;</a></h2>
 <p>For complete coverage, run Release Agent in both:</p>
@@ -2068,9 +2068,9 @@
 <a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
 <a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">          </span><span class="nt">go-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1.21&#39;</span>
 <a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Release Agent</span>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">go install github.com/grokify/release-agent/cmd/releaseagent@latest</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">go install github.com/agentplexus/agent-team-release/cmd/atrelease@latest</span>
 <a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run checks</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agent-team-release check</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">atrelease check</span>
 </code></pre></div>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="hook-not-running">Hook Not Running<a class="headerlink" href="#hook-not-running" title="Permanent link">&para;</a></h3>
@@ -2082,19 +2082,19 @@
 <p>The hook runs in the repository root. Use absolute paths if needed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--show-toplevel<span class="k">)</span><span class="s2">&quot;</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">exec</span><span class="w"> </span>agent-team-release<span class="w"> </span>check
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">exec</span><span class="w"> </span>atrelease<span class="w"> </span>check
 </code></pre></div>
 <h3 id="release-agent-not-found">Release Agent Not Found<a class="headerlink" href="#release-agent-not-found" title="Permanent link">&para;</a></h3>
 <p>Ensure Release Agent is in your PATH:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/go/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">exec</span><span class="w"> </span>agent-team-release<span class="w"> </span>check
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">exec</span><span class="w"> </span>atrelease<span class="w"> </span>check
 </code></pre></div>
 <h3 id="slow-hooks">Slow Hooks<a class="headerlink" href="#slow-hooks" title="Permanent link">&para;</a></h3>
 <p>For faster feedback, skip time-consuming checks:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Fast checks only - full checks run in CI</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">exec</span><span class="w"> </span>agent-team-release<span class="w"> </span>check<span class="w"> </span>--no-test<span class="w"> </span>--no-coverage
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">exec</span><span class="w"> </span>atrelease<span class="w"> </span>check<span class="w"> </span>--no-test<span class="w"> </span>--no-coverage
 </code></pre></div>
 <h2 id="team-guidelines">Team Guidelines<a class="headerlink" href="#team-guidelines" title="Permanent link">&para;</a></h2>
 <h3 id="recommended-setup">Recommended Setup<a class="headerlink" href="#recommended-setup" title="Permanent link">&para;</a></h3>

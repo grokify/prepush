@@ -1683,21 +1683,21 @@
 <h2 id="common-workflows">Common Workflows<a class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h2>
 <h3 id="pre-push-validation">Pre-Push Validation<a class="headerlink" href="#pre-push-validation" title="Permanent link">&para;</a></h3>
 <p>Run before pushing to catch issues early:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>agent-team-release<span class="w"> </span>check
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>atrelease<span class="w"> </span>check
 </code></pre></div>
 <h3 id="release-readiness">Release Readiness<a class="headerlink" href="#release-readiness" title="Permanent link">&para;</a></h3>
 <p>Check if the project is ready for release:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>agent-team-release<span class="w"> </span>validate<span class="w"> </span>--version<span class="o">=</span>v1.0.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>atrelease<span class="w"> </span>validate<span class="w"> </span>--version<span class="o">=</span>v1.0.0
 </code></pre></div>
 <h3 id="full-release">Full Release<a class="headerlink" href="#full-release" title="Permanent link">&para;</a></h3>
 <p>Execute the complete release workflow:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>agent-team-release<span class="w"> </span>release<span class="w"> </span>v1.0.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>atrelease<span class="w"> </span>release<span class="w"> </span>v1.0.0
 </code></pre></div>
 <h3 id="generate-documentation">Generate Documentation<a class="headerlink" href="#generate-documentation" title="Permanent link">&para;</a></h3>
 <p>Update changelog and documentation:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>agent-team-release<span class="w"> </span>changelog<span class="w"> </span>--since<span class="o">=</span>v0.9.0
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>agent-team-release<span class="w"> </span>readme<span class="w"> </span>--version<span class="o">=</span>v1.0.0
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>agent-team-release<span class="w"> </span>roadmap
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>atrelease<span class="w"> </span>changelog<span class="w"> </span>--since<span class="o">=</span>v0.9.0
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>atrelease<span class="w"> </span>readme<span class="w"> </span>--version<span class="o">=</span>v1.0.0
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>atrelease<span class="w"> </span>roadmap
 </code></pre></div>
 
 
