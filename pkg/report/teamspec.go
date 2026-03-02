@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"time"
 
-	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+	multiagentspec "github.com/plexusone/multi-agent-spec/sdk/go"
 )
 
 // LoadTeamSpec loads a team.json file from the given directory.
@@ -116,7 +116,7 @@ func BuildReportFromSpec(spec *multiagentspec.Team, results map[string][]multiag
 	}
 
 	report := &multiagentspec.TeamReport{
-		Schema:      "https://raw.githubusercontent.com/agentplexus/multi-agent-spec/main/schema/report/team-report.schema.json",
+		Schema:      "https://raw.githubusercontent.com/plexusone/multi-agent-spec/main/schema/report/team-report.schema.json",
 		Project:     project,
 		Version:     version,
 		Target:      version,

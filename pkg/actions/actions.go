@@ -2,7 +2,7 @@
 package actions
 
 import (
-	"github.com/agentplexus/agent-team-release/pkg/config"
+	"github.com/plexusone/agent-team-release/pkg/config"
 )
 
 // Result represents the result of an action.

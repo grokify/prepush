@@ -5,11 +5,11 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/agentplexus/agent-team-release/pkg/actions"
-	"github.com/agentplexus/agent-team-release/pkg/checks"
-	"github.com/agentplexus/agent-team-release/pkg/detect"
-	"github.com/agentplexus/agent-team-release/pkg/git"
-	"github.com/agentplexus/assistantkit/requirements"
+	"github.com/plexusone/agent-team-release/pkg/actions"
+	"github.com/plexusone/agent-team-release/pkg/checks"
+	"github.com/plexusone/agent-team-release/pkg/detect"
+	"github.com/plexusone/agent-team-release/pkg/git"
+	"github.com/plexusone/assistantkit/requirements"
 )
 
 // ReleaseWorkflow creates a workflow for releasing a new version.

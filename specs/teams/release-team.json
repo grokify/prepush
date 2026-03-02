@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/agentplexus/multi-agent-spec/main/schema/orchestration/team.schema.json",
+  "$schema": "https://raw.githubusercontent.com/plexusone/multi-agent-spec/main/schema/orchestration/team.schema.json",
   "name": "agent-team-release",
   "version": "1.1.0",
   "description": "A hierarchical team of agents for automating software release workflows with validation, documentation, security, and execution phases.",

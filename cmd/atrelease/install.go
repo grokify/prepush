@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/agentplexus/agent-team-release/plugins/kiro"
+	"github.com/plexusone/agent-team-release/plugins/kiro"
 	"github.com/spf13/cobra"
 )
 

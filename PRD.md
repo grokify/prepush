@@ -112,7 +112,7 @@ As a Claude Code user, I want to invoke release-agent via `/release-agent` so th
 - Subagent can ask user questions during execution
 - Proper permission handling for file edits
 - Clear summary of actions taken
-- Install via GitHub: `claude plugin add github:agentplexus/agent-team-release/plugins/claude`
+- Install via GitHub: `claude plugin add github:plexusone/agent-team-release/plugins/claude`
 
 **Note:** Currently available as a custom plugin installed from GitHub. Official Claude Marketplace publication is planned for future release.
 
@@ -127,7 +127,7 @@ As a developer, I want release validation performed by specialized agents (PM, Q
 - Agents defined using multi-agent-spec format (`team.json`, `deployment.json`)
 - DAG workflow with PM running first, parallel validation agents, then Release
 - Reports display teams in DAG order (topological sort with alphabetical tie-breaking)
-- Canonical IR types from `github.com/agentplexus/multi-agent-spec/sdk/go`
+- Canonical IR types from `github.com/plexusone/multi-agent-spec/sdk/go`
 - JSON schema conformance for interoperability
 
 ### US-8: Multi-Platform Agent Deployment

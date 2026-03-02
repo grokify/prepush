@@ -6,10 +6,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/agentplexus/agent-team-release/pkg/checks"
-	"github.com/agentplexus/agent-team-release/pkg/config"
-	"github.com/agentplexus/agent-team-release/pkg/detect"
-	"github.com/agentplexus/assistantkit/requirements"
+	"github.com/plexusone/agent-team-release/pkg/checks"
+	"github.com/plexusone/agent-team-release/pkg/config"
+	"github.com/plexusone/agent-team-release/pkg/detect"
+	"github.com/plexusone/assistantkit/requirements"
 )
 
 // Check command flags

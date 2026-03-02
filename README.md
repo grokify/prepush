@@ -69,13 +69,13 @@ The workflow ensures:
 ## Installation
 
 ```bash
-go install github.com/agentplexus/agent-team-release/cmd/atrelease@latest
+go install github.com/plexusone/agent-team-release/cmd/atrelease@latest
 ```
 
 ### Homebrew
 
 ```bash
-brew tap agentplexus/tap
+brew tap plexusone/tap
 brew install atrelease
 ```
 
@@ -332,7 +332,7 @@ Structured box report with per-team validation results:
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                             TEAM STATUS REPORT                             ║
 ╠════════════════════════════════════════════════════════════════════════════╣
-║ Project: github.com/agentplexus/agent-team-release                         ║
+║ Project: github.com/plexusone/agent-team-release                         ║
 ║ Target:  v0.3.0                                                            ║
 ╠════════════════════════════════════════════════════════════════════════════╣
 ║ RELEASE VALIDATION                                                         ║
@@ -355,7 +355,7 @@ Structured box report with per-team validation results:
 Install as a Claude Code plugin for interactive release automation:
 
 ```bash
-claude plugin add github:agentplexus/agent-team-release/plugins/claude
+claude plugin add github:plexusone/agent-team-release/plugins/claude
 ```
 
 The plugin includes:
@@ -509,13 +509,13 @@ These tools are invoked by `releasekit` for language validation:
 
 MIT License - see [LICENSE](LICENSE) for details.
 
- [build-status-svg]: https://github.com/agentplexus/agent-team-release/actions/workflows/ci.yaml/badge.svg?branch=main
- [build-status-url]: https://github.com/agentplexus/agent-team-release/actions/workflows/ci.yaml
- [lint-status-svg]: https://github.com/agentplexus/agent-team-release/actions/workflows/lint.yaml/badge.svg?branch=main
- [lint-status-url]: https://github.com/agentplexus/agent-team-release/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/agentplexus/agent-team-release
- [goreport-url]: https://goreportcard.com/report/github.com/agentplexus/agent-team-release
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/agentplexus/agent-team-release
- [docs-godoc-url]: https://pkg.go.dev/github.com/agentplexus/agent-team-release
+ [build-status-svg]: https://github.com/plexusone/agent-team-release/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/plexusone/agent-team-release/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/plexusone/agent-team-release/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/plexusone/agent-team-release/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/plexusone/agent-team-release
+ [goreport-url]: https://goreportcard.com/report/github.com/plexusone/agent-team-release
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/agent-team-release
+ [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/agent-team-release
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/agentplexus/agent-team-release/blob/master/LICENSE
+ [license-url]: https://github.com/plexusone/agent-team-release/blob/master/LICENSE

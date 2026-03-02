@@ -1,7 +1,7 @@
 {
   "ir_version": "1.0",
   "project": "Release Agent Team",
-  "repository": "https://github.com/agentplexus/agent-team-release",
+  "repository": "https://github.com/plexusone/agent-team-release",
 
   "legend": {
     "completed": {"emoji": "✅", "description": "Completed"},
@@ -142,7 +142,7 @@
     {
       "id": "rename-repo",
       "title": "Rename repository to release-agent",
-      "description": "Update module path to github.com/agentplexus/agent-team-release",
+      "description": "Update module path to github.com/plexusone/agent-team-release",
       "status": "completed",
       "version": "0.2.0",
       "phase": "v0.2",
@@ -472,7 +472,7 @@
     {
       "id": "homebrew",
       "title": "Homebrew formula",
-      "description": "Publish to agentplexus/tap",
+      "description": "Publish to plexusone/tap",
       "status": "completed",
       "version": "0.3.0",
       "phase": "v0.3",
@@ -516,7 +516,7 @@
     {
       "id": "claude-plugin-github",
       "title": "Claude Code plugin via GitHub",
-      "description": "Install directly from GitHub: `claude plugin add github:agentplexus/agent-team-release/plugins/claude`",
+      "description": "Install directly from GitHub: `claude plugin add github:plexusone/agent-team-release/plugins/claude`",
       "status": "completed",
       "version": "0.4.0",
       "phase": "v0.4",

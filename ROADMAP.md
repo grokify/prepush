@@ -62,7 +62,7 @@ Incorporate feedback from real-world usage before v1.0
 
 ### [x] Rename repository to release-agent
 
-Update module path to github.com/agentplexus/agent-team-release
+Update module path to github.com/plexusone/agent-team-release
 
 **Version:** 0.2.0
 
@@ -248,7 +248,7 @@ Verify schangelog, sroadmap, golangci-lint installed
 
 ### [x] Claude Code plugin via GitHub
 
-Install directly from GitHub: `claude plugin add github:agentplexus/agent-team-release/plugins/claude`
+Install directly from GitHub: `claude plugin add github:plexusone/agent-team-release/plugins/claude`
 
 **Version:** 0.4.0
 
@@ -266,7 +266,7 @@ TOML-based plugin for Gemini CLI Extensions
 
 ### [x] Homebrew formula
 
-Publish to agentplexus/tap
+Publish to plexusone/tap
 
 **Version:** 0.3.0
 

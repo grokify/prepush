@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/agentplexus/multi-agent-spec/main/schema/deployment/deployment.schema.json",
+  "$schema": "https://raw.githubusercontent.com/plexusone/multi-agent-spec/main/schema/deployment/deployment.schema.json",
   "team": "agent-team-release",
   "targets": [
     {
@@ -153,7 +153,7 @@
       "config": {
         "namespace": "release-agents",
         "helmChart": true,
-        "imageRegistry": "ghcr.io/agentplexus",
+        "imageRegistry": "ghcr.io/plexusone",
         "resourceLimits": {
           "cpu": "2",
           "memory": "4Gi"

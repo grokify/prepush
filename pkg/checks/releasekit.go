@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+	multiagentspec "github.com/plexusone/multi-agent-spec/sdk/go"
 )
 
 // RunReleasekit executes `releasekit validate` and returns the results as checks.Result.

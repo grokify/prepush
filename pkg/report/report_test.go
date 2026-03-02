@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+	multiagentspec "github.com/plexusone/multi-agent-spec/sdk/go"
 )
 
 func TestStatusIcon(t *testing.T) {
@@ -119,7 +119,7 @@ func TestReportIsGo(t *testing.T) {
 
 func TestRenderer(t *testing.T) {
 	report := &multiagentspec.TeamReport{
-		Project: "github.com/agentplexus/agent-team-release",
+		Project: "github.com/plexusone/agent-team-release",
 		Version: "v0.3.0",
 		Target:  "v0.3.0 (release automation)",
 		Phase:   "PHASE 1: REVIEW",
@@ -160,7 +160,7 @@ func TestRenderer(t *testing.T) {
 	// Note: teamHeader uses team.Name directly (not "ID (Name)" format)
 	expectedContent := []string{
 		"TEAM STATUS REPORT",
-		"github.com/agentplexus/agent-team-release",
+		"github.com/plexusone/agent-team-release",
 		"v0.3.0 (release automation)",
 		"PHASE 1: REVIEW",
 		"qa",      // team.Name

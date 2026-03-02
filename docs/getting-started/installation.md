@@ -5,7 +5,7 @@
 The easiest way to install Release Agent Team is using `go install`:
 
 ```bash
-go install github.com/agentplexus/agent-team-release/cmd/atrelease@latest
+go install github.com/plexusone/agent-team-release/cmd/atrelease@latest
 ```
 
 This installs the `atrelease` binary to your `$GOPATH/bin` directory.
@@ -15,7 +15,7 @@ This installs the `atrelease` binary to your `$GOPATH/bin` directory.
 On macOS and Linux, you can install via Homebrew:
 
 ```bash
-brew tap agentplexus/tap
+brew tap plexusone/tap
 brew install atrelease
 ```
 
@@ -24,7 +24,7 @@ brew install atrelease
 Clone the repository and build:
 
 ```bash
-git clone https://github.com/agentplexus/agent-team-release.git
+git clone https://github.com/plexusone/agent-team-release.git
 cd agent-team-release
 go build -o atrelease ./cmd/atrelease
 ```

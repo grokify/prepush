@@ -134,7 +134,7 @@ jobs:
         with:
           go-version: '1.21'
       - name: Install Release Agent
-        run: go install github.com/agentplexus/agent-team-release/cmd/atrelease@latest
+        run: go install github.com/plexusone/agent-team-release/cmd/atrelease@latest
       - name: Run checks
         run: atrelease check
 ```

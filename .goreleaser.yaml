@@ -85,7 +85,7 @@ changelog:
 
 release:
   github:
-    owner: agentplexus
+    owner: plexusone
     name: agent-team-release
   draft: false
   prerelease: auto
@@ -98,16 +98,16 @@ release:
   footer: |
     ---
 
-    **Full Changelog**: https://github.com/agentplexus/agent-team-release/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full Changelog**: https://github.com/plexusone/agent-team-release/compare/{{ .PreviousTag }}...{{ .Tag }}
 
     ### Installation
 
     ```bash
     # Go install
-    go install github.com/agentplexus/agent-team-release/cmd/atrelease@{{ .Tag }}
+    go install github.com/plexusone/agent-team-release/cmd/atrelease@{{ .Tag }}
 
     # Homebrew (macOS/Linux)
-    brew tap agentplexus/tap
+    brew tap plexusone/tap
     brew install atrelease
     ```
 
@@ -116,11 +116,11 @@ brews:
     ids:
       - atrelease
     repository:
-      owner: agentplexus
+      owner: plexusone
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     directory: Formula
-    homepage: https://github.com/agentplexus/agent-team-release
+    homepage: https://github.com/plexusone/agent-team-release
     description: Multi-agent release preparation team for multi-language repositories
     license: MIT
     dependencies:

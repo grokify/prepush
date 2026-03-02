@@ -6,8 +6,8 @@ import (
 
 	"github.com/toon-format/toon-go"
 
-	"github.com/agentplexus/agent-team-release/pkg/actions"
-	"github.com/agentplexus/agent-team-release/pkg/interactive"
+	"github.com/plexusone/agent-team-release/pkg/actions"
+	"github.com/plexusone/agent-team-release/pkg/interactive"
 )
 
 // TOONWriter writes TOON-formatted messages to an output stream.

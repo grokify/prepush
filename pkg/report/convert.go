@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
-	"github.com/agentplexus/agent-team-release/pkg/checks"
+	multiagentspec "github.com/plexusone/multi-agent-spec/sdk/go"
+	"github.com/plexusone/agent-team-release/pkg/checks"
 )
 
 // TeamConfig maps validation areas to team IDs, names, and DAG dependencies.
@@ -109,7 +109,7 @@ func FromValidationReport(vr *checks.ValidationReport, project, target, phase st
 	}
 
 	report := &multiagentspec.TeamReport{
-		Schema:      "https://raw.githubusercontent.com/agentplexus/multi-agent-spec/main/schema/report/team-report.schema.json",
+		Schema:      "https://raw.githubusercontent.com/plexusone/multi-agent-spec/main/schema/report/team-report.schema.json",
 		Project:     project,
 		Version:     vr.Version,
 		Target:      target,

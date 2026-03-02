@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/agentplexus/agent-team-release/pkg/actions"
+	"github.com/plexusone/agent-team-release/pkg/actions"
 )
 
 // CLIPrompter implements Prompter for terminal interaction.

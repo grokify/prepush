@@ -10,14 +10,14 @@ import (
 	"os/exec"
 	"strings"
 
-	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+	multiagentspec "github.com/plexusone/multi-agent-spec/sdk/go"
 	"github.com/spf13/cobra"
 
-	"github.com/agentplexus/agent-team-release/pkg/checks"
-	"github.com/agentplexus/agent-team-release/pkg/config"
-	"github.com/agentplexus/agent-team-release/pkg/detect"
-	"github.com/agentplexus/agent-team-release/pkg/report"
-	"github.com/agentplexus/assistantkit/requirements"
+	"github.com/plexusone/agent-team-release/pkg/checks"
+	"github.com/plexusone/agent-team-release/pkg/config"
+	"github.com/plexusone/agent-team-release/pkg/detect"
+	"github.com/plexusone/agent-team-release/pkg/report"
+	"github.com/plexusone/assistantkit/requirements"
 )
 
 // Validate command flags

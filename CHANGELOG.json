@@ -1,7 +1,7 @@
 {
   "ir_version": "1.0",
   "project": "agent-team-release",
-  "repository": "https://github.com/agentplexus/agent-team-release",
+  "repository": "https://github.com/plexusone/agent-team-release",
   "versioning": "semver",
   "commit_convention": "conventional",
   "releases": [
@@ -35,7 +35,7 @@
         { "description": "Remove unused helper functions in releasekit.go", "commit": "14b6fb2" }
       ],
       "dependencies": [
-        { "description": "Bump github.com/agentplexus/multi-agent-spec/sdk/go to v0.5.0", "commit": "ea734a4" }
+        { "description": "Bump github.com/plexusone/multi-agent-spec/sdk/go to v0.5.0", "commit": "ea734a4" }
       ]
     },
     {
@@ -118,7 +118,7 @@
         { "description": "`specs/teams/release-team.yaml` - consolidated to JSON format", "commit": "3e589b7" }
       ],
       "dependencies": [
-        { "description": "Updated `github.com/agentplexus/multi-agent-spec/sdk/go` to v0.3.0", "commit": "e3ff5ef" }
+        { "description": "Updated `github.com/plexusone/multi-agent-spec/sdk/go` to v0.3.0", "commit": "e3ff5ef" }
       ],
       "documentation": [
         { "description": "Added release notes for v0.5.0", "commit": "a1ad92e" }
@@ -129,7 +129,7 @@
       "date": "2026-01-17",
       "highlights": [
         { "description": "Multi-agent team architecture with 6 specialized agents (PM, QA, Documentation, Security, Release, Coordinator) and DAG workflow orchestration" },
-        { "description": "Repository moved to github.com/agentplexus/agent-team-release with renamed binary `agent-team-release`" }
+        { "description": "Repository moved to github.com/plexusone/agent-team-release with renamed binary `agent-team-release`" }
       ],
       "added": [
         { "description": "Multi-agent team spec with `team.json` defining 6 agents and DAG workflow", "commit": "8268317" },
@@ -140,7 +140,7 @@
         { "description": "Gemini CLI extension documentation", "commit": "aec71a2" }
       ],
       "changed": [
-        { "description": "Module path from `github.com/grokify/release-agent` to `github.com/agentplexus/agent-team-release`", "breaking": true, "commit": "9b1503b" },
+        { "description": "Module path from `github.com/grokify/release-agent` to `github.com/plexusone/agent-team-release`", "breaking": true, "commit": "9b1503b" },
         { "description": "Binary name from `releaseagent` to `agent-team-release`", "breaking": true, "commit": "1b5789f" },
         { "description": "Homebrew formula from `grokify/tap/releaseagent` to `agentplexus/tap/agent-team-release`", "breaking": true, "commit": "1b5789f" },
         { "description": "Claude Code plugin name from `release-agent` to `agent-team-release`", "commit": "c043b97" },

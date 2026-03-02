@@ -2,7 +2,7 @@
 package interactive
 
 import (
-	"github.com/agentplexus/agent-team-release/pkg/actions"
+	"github.com/plexusone/agent-team-release/pkg/actions"
 )
 
 // QuestionType defines the type of question.

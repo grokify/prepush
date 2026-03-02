@@ -1,8 +1,8 @@
 site_name: Release Agent Team
 site_description: Multi-agent release preparation team for multi-language repositories
-site_url: https://agentplexus.github.io/agent-team-release/
-repo_url: https://github.com/agentplexus/agent-team-release
-repo_name: agentplexus/agent-team-release
+site_url: https://plexusone.github.io/agent-team-release/
+repo_url: https://github.com/plexusone/agent-team-release
+repo_name: plexusone/agent-team-release
 
 theme:
   name: material
@@ -55,7 +55,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/agentplexus/agent-team-release
+      link: https://github.com/plexusone/agent-team-release
 
 nav:
   - Home: index.md

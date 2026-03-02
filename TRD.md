@@ -41,7 +41,7 @@ Release Agent Team provides a modular architecture for release automation with v
 ## Module Structure
 
 ```
-github.com/agentplexus/agent-team-release/
+github.com/plexusone/agent-team-release/
 ├── cmd/
 │   └── atrelease/              # CLI entry point
 │       ├── main.go             # Main entry
@@ -722,7 +722,7 @@ Lifecycle hooks for Claude Code integration:
 
 ## Multi-Agent Team Architecture
 
-Release Agent Team uses a multi-agent architecture defined in [multi-agent-spec](https://github.com/agentplexus/multi-agent-spec) format.
+Release Agent Team uses a multi-agent architecture defined in [multi-agent-spec](https://github.com/plexusone/multi-agent-spec) format.
 
 ### Agent Definitions
 
@@ -771,10 +771,10 @@ Agents execute in a directed acyclic graph (DAG) workflow:
 
 ### Multi-Agent-Spec Integration
 
-The report system uses canonical types from `github.com/agentplexus/multi-agent-spec/sdk/go`:
+The report system uses canonical types from `github.com/plexusone/multi-agent-spec/sdk/go`:
 
 ```go
-import multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+import multiagentspec "github.com/plexusone/multi-agent-spec/sdk/go"
 
 // TeamReport represents validation results from all agents
 type TeamReport = multiagentspec.TeamReport
@@ -918,7 +918,7 @@ Without the CLI, each spawned agent must implement equivalent logic using its ma
 | `github.com/spf13/cobra` | CLI framework |
 | `gopkg.in/yaml.v3` | YAML configuration |
 | `github.com/toon-format/toon-go` | TOON output format |
-| `github.com/agentplexus/multi-agent-spec/sdk/go` | Canonical IR types for reports |
+| `github.com/plexusone/multi-agent-spec/sdk/go` | Canonical IR types for reports |
 
 ### External Tools
 
