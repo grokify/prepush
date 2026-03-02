@@ -1,10 +1,45 @@
 {
-  "ir_version": "1.0",
+  "irVersion": "1.0",
   "project": "agent-team-release",
   "repository": "https://github.com/plexusone/agent-team-release",
   "versioning": "semver",
-  "commit_convention": "conventional",
+  "commitConvention": "conventional",
   "releases": [
+    {
+      "version": "v0.8.0",
+      "date": "2026-03-02",
+      "highlights": [
+        { "description": "**BREAKING:** Module path migrated from `github.com/agentplexus/agent-team-release` to `github.com/plexusone/agent-team-release`" },
+        { "description": "Organization migration to plexusone GitHub organization" },
+        { "description": "CI/CD migrated to shared workflows from plexusone/.github" }
+      ],
+      "changed": [
+        { "description": "Module path renamed from `github.com/agentplexus/agent-team-release` to `github.com/plexusone/agent-team-release`", "commit": "b11f41d" },
+        { "description": "Updated `assistantkit` dependency to v0.11.0 from plexusone org", "commit": "b11f41d" },
+        { "description": "Updated `multi-agent-spec/sdk/go` dependency to v0.8.0 from plexusone org", "commit": "b11f41d" },
+        { "description": "Updated all internal imports to use new module path", "commit": "b11f41d" },
+        { "description": "Updated documentation site URL to `plexusone.github.io`", "commit": "b11f41d" },
+        { "description": "Updated GoReleaser config for plexusone organization", "commit": "b11f41d" },
+        { "description": "Updated Homebrew tap to `plexusone/tap`", "commit": "b11f41d" },
+        { "description": "Changed team workflow type from `dag` to `graph` in specs", "commit": "6f643ad" }
+      ],
+      "fixed": [
+        { "description": "Updated test expectations for multi-agent-spec v0.7.0 report format", "commit": "8c1960f" }
+      ],
+      "infrastructure": [
+        { "description": "Migrated CI/Lint/SAST workflows to shared workflows from plexusone/.github", "commit": "cffb9d2" },
+        { "description": "Fixed golangci-lint QF1012 warning: Use fmt.Fprintf instead of WriteString(fmt.Sprintf)", "commit": "bc81c43" },
+        { "description": "Bumped goreleaser/goreleaser-action from 6 to 7", "commit": "4207413" }
+      ],
+      "dependencies": [
+        { "description": "`assistantkit` v0.10.0 → v0.11.0 (plexusone org migration)", "commit": "b11f41d" },
+        { "description": "`multi-agent-spec/sdk/go` v0.7.0 → v0.8.0 (plexusone org migration)", "commit": "b11f41d" }
+      ],
+      "documentation": [
+        { "description": "Updated all documentation references to plexusone organization", "commit": "b11f41d" },
+        { "description": "Updated installation instructions with new module path and brew tap", "commit": "b11f41d" }
+      ]
+    },
     {
       "version": "v0.7.0",
       "date": "2026-01-26",
